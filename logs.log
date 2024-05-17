@@ -1,0 +1,22 @@
+2024-05-17 08:26:55,496:WARNING:/usr/local/lib/python3.10/site-packages/wurlitzer.py:230: RuntimeWarning: Failed to set pipe buffer size: [Errno 1] Operation not permitted
+  warnings.warn(
+
+2024-05-17 08:26:55,498:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-05-17 08:26:55,498:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-05-17 08:26:55,498:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-05-17 08:26:55,498:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-05-17 08:31:22,778:WARNING:/usr/local/lib/python3.10/site-packages/wurlitzer.py:230: RuntimeWarning: Failed to set pipe buffer size: [Errno 1] Operation not permitted
+  warnings.warn(
+
+2024-05-17 08:31:22,781:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-05-17 08:31:22,781:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-05-17 08:31:22,781:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-05-17 08:31:22,781:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.

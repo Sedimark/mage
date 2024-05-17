@@ -1,0 +1,16 @@
+#folium
+#mlflow
+#pythresh
+#deepdiff
+#joblib==1.3.0
+#lightgbm
+#river==0.21.0
+dask[dataframe]
+#scikit-learn==1.4.0
+#umap-learn==0.5.5
+#ludwig==0.10.3
+#pycaret
+#setuptools<=60.0
+#recordlinking
+#numpy==1.23.0
+joblib==1.3.0
