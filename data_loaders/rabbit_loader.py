@@ -1,14 +1,9 @@
 import pika
+import json
+from typing import Any
 from mage_ai.data_preparation.decorators import data_loader
 from mage_ai.data_preparation.decorators import test
 
-
-connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host="localhost", port=5672))
-
-
-def callback(ch, method, properties, body):
-    print(" [x] Received: {}".format(body))
 
 @data_loader
 def load_data_from_file(*args, **kwargs):
@@ -21,29 +16,21 @@ def load_data_from_file(*args, **kwargs):
 
     Docs: https://docs.mage.ai/design/data-loading#fileio
     """
-    # filepath = 'path/to/your/file.csv'
+    print("Making the connection!")
+    connection = pika.BlockingConnection(
+        pika.ConnectionParameters(host="62.72.21.79", port=5673)
+    )
 
-        
-    # Connect to RabbitMQ server
-    # connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
-    channel = connection.channel()
+    queue_name = 'hello'
+    channel.queue_declare(queue='hello')
 
-    # Declare a queue to consume messages from
-    queue_name = 'test_queue_rabbit'
-    channel.queue_declare(queue='test_queue_rabbit', durable=True)
+    method_frame, header_frame, body = channel.basic_get(queue=queue_name, auto_ack=True)
+    
+    if not method_frame:
+        return {}
 
-    # Set up the consumer to use the callback function
-    channel.basic_consume(queue=queue_name,
-                        on_message_callback=callback,
-                        auto_ack=True)
+    return json.loads(body)
 
-    print(' [*] Waiting for messages. To exit, press CTRL+C')
-    channel.start_consuming()
-
-    # return FileIO().load(filepath)
-
-
-# 
 
 @test
 def test_output(output, *args) -> None:
