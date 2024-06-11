@@ -20,7 +20,7 @@ import tempfile
 import warnings
 from default_repo.feature_extraction.skPCA import skpca
 from default_repo.feature_extraction.skTSNE import sktsne
-from default_repo.feature_extraction.sUMAP import sumap
+# from default_repo.feature_extraction.sUMAP import sumap
 from default_repo.feature_extraction.skLDA import sklda
 from default_repo.feature_extraction.skRP import skrp
 from default_repo.feature_extraction.skFH import skfh
@@ -88,7 +88,7 @@ def transform_custom(input_df, **kwargs):
     run_id=kwargs.get('run_id')
 
     if run_id is None:
-        run_id="f71e111ed5d6442f8fa72442926d8997"
+        run_id="c46597e59a4c425aa9d363bf91bb1e0b"
         # run_id="273d779069184b758690c4fa143a8493" #ludwig
         
 
@@ -156,10 +156,10 @@ def transform_custom(input_df, **kwargs):
         df_compare['X050551301_predicted_flow']=y_pred[0]
 
     # plt.figure(figsize=(10, 6))
-    plt.plot(df_compare['date'], df_compare['X050551301_predicted_flow'], linestyle='-')
+    plt.plot(df_compare['date'].tail(20), df_compare['X050551301_predicted_flow'].tail(20), linestyle='-')
 
 
-    plt.gca().xaxis.set_major_locator(DayLocator(interval=50))  
+    # plt.gca().xaxis.set_major_locator(DayLocator(interval=300))  
     plt.gcf().autofmt_xdate()
 
     plt.xlabel('Date')

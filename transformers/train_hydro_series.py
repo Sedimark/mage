@@ -30,7 +30,7 @@ from sklearn.preprocessing import StandardScaler
 # pca
 from default_repo.feature_extraction.skPCA import skpca
 from default_repo.feature_extraction.skTSNE import sktsne
-from default_repo.feature_extraction.sUMAP import sumap
+# from default_repo.feature_extraction.sUMAP import sumap
 from default_repo.feature_extraction.skLDA import sklda
 from default_repo.feature_extraction.skRP import skrp
 from default_repo.feature_extraction.skFH import skfh
@@ -121,7 +121,7 @@ module_dict = {
  # pca libraries
 'skpca': skpca,
 'sktsne':sktsne,
-'sumap':sumap,
+# 'sumap':sumap,
 'sklda':sklda,
 'skrp':skrp,
 'skfh':skfh,
@@ -144,6 +144,8 @@ def transform(data, *args, **kwargs):
     Returns:
         Anything (e.g. data frame, dictionary, array, int, str, etc.)
     """
+
+
     # data_precipitation = get_variable('flawless_waterfall', 'load_precipitation', 'output_0')
     # print(data[1])
 
@@ -160,8 +162,11 @@ def transform(data, *args, **kwargs):
     df_new=data[0].copy()
 
     # df_new = pd.concat([df_new,data_precipitation], axis=1)
+ 
+    # make nan values 0
 
-    print(df_new.head())
+    df_new[df_new['X050551301'].isnull()]=0
+
 
     target_column = 'X050551301'
 

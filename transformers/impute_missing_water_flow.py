@@ -17,8 +17,8 @@ def impute_water_flow(df_pivoted):
     # df_columns= ['X051591001', 'X031001001','X045401001', 'X050551301']
     # df_columns= ['X031001001','X045401001', 'X050551301','X045631001','X051591001']
 
-    df_columns = ['X031001001','X045401001','X051591001','X050551301']
-    # df_columns = ['X031001001','X045401001','X051591001']
+    # df_columns = ['X031001001','X045401001','X051591001','X050551301']
+    df_columns = ['X031001001','X045401001','X051591001']
 
     for column in df_columns:
         df_pivoted[column] = pd.to_numeric(df_pivoted[column])

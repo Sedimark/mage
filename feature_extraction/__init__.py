@@ -12,7 +12,7 @@ reduce the dimensionality/size of the input data.
 from .skFH import skfh
 from .skPCA import skpca
 from .skRP import skrp
-from .sUMAP import sumap
+# from .sUMAP import sumap
 from .skTSNE import sktsne
 from .skLDA import sklda 
 
@@ -20,7 +20,7 @@ __all__ = [
     "skfh",
     "skpca",
     "skrp",
-    "sumap",
+    # "sumap",
     "sktsne",
     "sklda"
 ]
