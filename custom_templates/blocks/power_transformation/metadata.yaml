@@ -1,0 +1,11 @@
+block_type: transformer
+color: null
+configuration: null
+description: A block that applies sklear PowerTransformation on the dataset to make
+  it mroe Gaussian-like.
+language: python
+name: Power Transformation
+pipeline: {}
+tags: []
+user:
+  username: stefan

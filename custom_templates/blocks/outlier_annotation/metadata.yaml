@@ -1,0 +1,11 @@
+block_type: transformer
+color: null
+configuration: null
+description: A block that will annotate each row with True or False if it is an outlier
+  or not based on Z-score.
+language: python
+name: Outlier Annotation
+pipeline: {}
+tags: []
+user:
+  username: stefan

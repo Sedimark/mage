@@ -1,0 +1,10 @@
+block_type: data_loader
+color: null
+configuration: null
+description: A block that loads data from a MSSQL database table based on a configuration.
+language: python
+name: MSSQL Loader
+pipeline: {}
+tags: []
+user:
+  username: stefan

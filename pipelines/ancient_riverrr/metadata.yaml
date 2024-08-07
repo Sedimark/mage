@@ -1,71 +1,65 @@
 blocks:
 - all_upstream_blocks_executed: true
   color: null
-  configuration:
-    file_path: transformers/impute_missing_water_flow.py
-    file_source:
-      path: transformers/impute_missing_water_flow.py
-  downstream_blocks:
-  - predict_export_x050551301
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: impute_missing_water_flow
-  retry_config: null
-  status: executed
-  timeout: null
-  type: transformer
-  upstream_blocks:
-  - load_water_data
-  uuid: impute_missing_water_flow
-- all_upstream_blocks_executed: true
-  color: null
   configuration: {}
   downstream_blocks:
-  - impute_missing_water_flow
+  - profound_moon
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: load water data
+  name: winter runesmith
   retry_config: null
   status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: load_water_data
+  uuid: winter_runesmith
 - all_upstream_blocks_executed: true
   color: null
-  configuration:
-    figure_url: '"https://dashboard.sedimark.work/browser/lgboost-model"'
-    file_source:
-      path: data_exporters/predict_export_x050551301.py
+  configuration: {}
+  downstream_blocks:
+  - arcane_myth
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: profound moon
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - winter_runesmith
+  uuid: profound_moon
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: predict_export_x050551301
-  retry_config: {}
-  status: executed
+  name: arcane myth
+  retry_config: null
+  status: updated
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - impute_missing_water_flow
-  uuid: predict_export_x050551301
+  - profound_moon
+  uuid: arcane_myth
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2024-03-19 09:00:23.692948+00:00'
+created_at: '2024-06-21 09:08:54.690966+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: predict flawless waterfall
+name: ancient_riverrr
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -73,9 +67,8 @@ run_pipeline_in_one_process: false
 settings:
   triggers: null
 spark_config: {}
-tags:
-- predict
+tags: []
 type: python
-uuid: predict_flawless_waterfall
+uuid: ancient_riverrr
 variables_dir: /home/src/mage_data/default_repo
 widgets: []

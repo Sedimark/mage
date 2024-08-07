@@ -1,0 +1,11 @@
+block_type: transformer
+color: null
+configuration: null
+description: (train) A block that will apply Linear Regression on the dataset based
+  on the column specified by pipeline variables.
+language: python
+name: Linear Regression
+pipeline: {}
+tags: []
+user:
+  username: stefan

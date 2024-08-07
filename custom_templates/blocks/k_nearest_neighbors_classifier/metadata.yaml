@@ -1,0 +1,11 @@
+block_type: transformer
+color: null
+configuration: null
+description: (train) A block that will apply K-Nearest Neighbors Classifier on the
+  dataset based on the column specified by pipeline variables.
+language: python
+name: K-Nearest Neighbors Classifier
+pipeline: {}
+tags: []
+user:
+  username: stefan

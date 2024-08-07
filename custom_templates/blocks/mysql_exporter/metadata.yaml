@@ -1,0 +1,10 @@
+block_type: data_exporter
+color: null
+configuration: null
+description: A block that will create a new table and place the resulted data.
+language: python
+name: MySQL Exporter
+pipeline: {}
+tags: []
+user:
+  username: stefan

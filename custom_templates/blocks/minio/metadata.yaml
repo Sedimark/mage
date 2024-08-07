@@ -1,0 +1,10 @@
+block_type: data_loader
+color: null
+configuration: null
+description: A block that loads an object from a Minio bucket.
+language: python
+name: Minio Loader
+pipeline: {}
+tags: []
+user:
+  username: stefan

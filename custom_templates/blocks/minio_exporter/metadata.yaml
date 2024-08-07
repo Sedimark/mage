@@ -1,0 +1,11 @@
+block_type: data_exporter
+color: null
+configuration: null
+description: A block that export the received data as an object inside a specified
+  bucket.
+language: python
+name: Minio Exporter
+pipeline: {}
+tags: []
+user:
+  username: stefan

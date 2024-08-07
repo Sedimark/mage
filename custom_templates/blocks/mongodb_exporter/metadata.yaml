@@ -1,0 +1,11 @@
+block_type: data_exporter
+color: null
+configuration: null
+description: A block that will export the received data inside a new collection into
+  a MongoDB database.
+language: python
+name: MongoDB Exporter
+pipeline: {}
+tags: []
+user:
+  username: stefan

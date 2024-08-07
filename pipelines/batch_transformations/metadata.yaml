@@ -6,6 +6,7 @@ blocks:
   - csv_transformer
   - create_dataset_tags
   - histogram_for_csv_loader_1698933657073
+  - csv_loader_histogram_w8
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -252,3 +253,22 @@ widgets:
   upstream_blocks:
   - csv_loader
   uuid: histogram_for_csv_loader_1698933657073
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    buckets: 10
+    chart_type: histogram
+    x: x
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: csv_loader_histogram_w8
+  retry_config: null
+  status: executed
+  timeout: null
+  type: chart
+  upstream_blocks:
+  - csv_loader
+  uuid: csv_loader_histogram_w8
