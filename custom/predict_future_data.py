@@ -9,22 +9,22 @@ import mlflow
 from mage_ai.settings.repo import get_repo_path
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-from default_repo.feature_extraction.skPCA import skpca
-from default_repo.feature_extraction.skTSNE import sktsne
-from default_repo.feature_extraction.sUMAP import sumap
-from default_repo.feature_extraction.skLDA import sklda
-from default_repo.feature_extraction.skRP import skrp
-from default_repo.feature_extraction.skFH import skfh
-from default_repo.feature_extraction.skIncPCA import skincpca
+from default_repo.utils.feature_extraction.skPCA import skpca
+from default_repo.utils.feature_extraction.skTSNE import sktsne
+from default_repo.utils.feature_extraction.sUMAP import sumap
+from default_repo.utils.feature_extraction.skLDA import sklda
+from default_repo.utils.feature_extraction.skRP import skrp
+from default_repo.utils.feature_extraction.skFH import skfh
+from default_repo.utils.feature_extraction.skIncPCA import skincpca
 
 # pca
-from default_repo.feature_extraction.skPCA import skpca
-from default_repo.feature_extraction.skTSNE import sktsne
-from default_repo.feature_extraction.sUMAP import sumap
-from default_repo.feature_extraction.skLDA import sklda
-from default_repo.feature_extraction.skRP import skrp
-from default_repo.feature_extraction.skFH import skfh
-from default_repo.feature_extraction.skIncPCA import skincpca
+from default_repo.utils.feature_extraction.skPCA import skpca
+from default_repo.utils.feature_extraction.skTSNE import sktsne
+from default_repo.utils.feature_extraction.sUMAP import sumap
+from default_repo.utils.feature_extraction.skLDA import sklda
+from default_repo.utils.feature_extraction.skRP import skrp
+from default_repo.utils.feature_extraction.skFH import skfh
+from default_repo.utils.feature_extraction.skIncPCA import skincpca
 
 if 'custom' not in globals():
     from mage_ai.data_preparation.decorators import custom

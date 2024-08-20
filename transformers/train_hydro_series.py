@@ -28,13 +28,13 @@ from mlflow.models import infer_signature
 from sklearn.preprocessing import StandardScaler
 
 # pca
-from default_repo.feature_extraction.skPCA import skpca
-from default_repo.feature_extraction.skTSNE import sktsne
+from default_repo.utils.feature_extraction.skPCA import skpca
+from default_repo.utils.feature_extraction.skTSNE import sktsne
 # from default_repo.feature_extraction.sUMAP import sumap
-from default_repo.feature_extraction.skLDA import sklda
-from default_repo.feature_extraction.skRP import skrp
-from default_repo.feature_extraction.skFH import skfh
-from default_repo.feature_extraction.skIncPCA import skincpca
+from default_repo.utils.feature_extraction.skLDA import sklda
+from default_repo.utils.feature_extraction.skRP import skrp
+from default_repo.utils.feature_extraction.skFH import skfh
+from default_repo.utils.feature_extraction.skIncPCA import skincpca
 
 # warnings.filterwarnings("ignore")
 warnings.filterwarnings( "ignore", module = "matplotlib\..*" )

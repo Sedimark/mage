@@ -1,7 +1,7 @@
 import pandas as pd
 import requests
-from default_repo.sedimark_demo import secret
-from default_repo.sedimark_demo import connector
+from default_repo.utils.sedimark_demo import secret
+from default_repo.utils.sedimark_demo import connector
 
 if 'data_loader' not in globals():
     from mage_ai.data_preparation.decorators import data_loader

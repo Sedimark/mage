@@ -1,7 +1,7 @@
 import pandas as pd
 import requests
-from default_repo.sedimark_demo import secret
-from default_repo.sedimark_demo import connector
+from default_repo.utils.sedimark_demo import secret
+from default_repo.utils.sedimark_demo import connector
 from collections import namedtuple
 
 

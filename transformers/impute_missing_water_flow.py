@@ -1,5 +1,5 @@
-from default_repo.dqp_code.dqp.core import DataSource
-from default_repo.dqp_code.dqp.missing import MissingImputationModule
+from default_repo.utils.dqp_code.dqp.core import DataSource
+from default_repo.utils.dqp_code.dqp.missing import MissingImputationModule
 import pandas as pd
 # from dqp.core import DataSource
 # from dqp.missing import MissingImputationModule
