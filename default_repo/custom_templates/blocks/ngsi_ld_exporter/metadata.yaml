@@ -1,0 +1,11 @@
+block_type: data_exporter
+color: null
+configuration: null
+description: This block is used to convert a pandas DataFrame into NGSI-LD compatible
+  data and export it to the local broker.
+language: python
+name: NGSI-LD Exporter
+pipeline: {}
+tags: []
+user:
+  username: admin

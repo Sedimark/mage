@@ -1,0 +1,37 @@
+node:
+  port: 8182
+  node_id: server
+
+dataset:
+  builtin_dataset: 'mnist'
+  n_splits: 1
+  split_index: 0
+  node_id: server
+  n_workers_torch: 0
+
+topology:
+  topology_name: CentralTopology
+  local_epochs: 1
+  max_iter: 5
+  log_file: 'metrics.txt'
+
+model:
+  model_path: /home/src/default_repo/configs/<pipeline_name>/model_files/keras.keras
+  model: "simple_cnn"
+  optimizer: Adam
+  lr: 0.0001
+  batch_size: 512
+  loss: BinaryCrossentropy
+  metrics:
+    - accuracy_score
+
+seed: 12645
+framework: keras
+log_file: /home/src/default_repo/configs/<pipeline_name>/results/server.txt
+
+stop_condition:
+  condition: fed_server
+  max_aggr: 1000
+  max_time: 3000
+  metric_name: accuracy_score
+  metric_min: 0.7

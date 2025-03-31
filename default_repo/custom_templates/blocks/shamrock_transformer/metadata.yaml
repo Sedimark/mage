@@ -1,0 +1,10 @@
+block_type: transformer
+color: null
+configuration: null
+description: Transformer for Shamrock federated framework.
+language: python
+name: Shamrock Transformer
+pipeline: {}
+tags: []
+user:
+  username: admin

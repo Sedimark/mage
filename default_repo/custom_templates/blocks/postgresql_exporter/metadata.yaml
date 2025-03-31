@@ -1,0 +1,11 @@
+block_type: data_exporter
+color: null
+configuration: null
+description: A block that will export the received data inside a table from a PostgreSQL
+  database.
+language: python
+name: PostgreSQL Exporter
+pipeline: {}
+tags: []
+user:
+  username: stefan

@@ -1,0 +1,11 @@
+block_type: transformer
+color: null
+configuration: null
+description: A block that uses the StandarScaler from sklearn to scale all numeric
+  columns between 0 and 1.
+language: python
+name: Standard Scaling
+pipeline: {}
+tags: []
+user:
+  username: stefan

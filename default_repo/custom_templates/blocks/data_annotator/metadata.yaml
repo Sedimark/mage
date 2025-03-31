@@ -1,0 +1,10 @@
+block_type: transformer
+color: null
+configuration: null
+description: This block is used to annotate a pandas dataframe.
+language: python
+name: Data Annotator
+pipeline: {}
+tags: []
+user:
+  username: admin

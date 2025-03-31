@@ -1,0 +1,11 @@
+block_type: transformer
+color: null
+configuration: null
+description: A block that applies PCA on the dataset to reduce the dimensionality
+  of the dataset based on the number of components variable.
+language: python
+name: PCA
+pipeline: {}
+tags: []
+user:
+  username: stefan

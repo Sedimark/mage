@@ -1,0 +1,11 @@
+block_type: transformer
+color: null
+configuration: null
+description: A block that will fill all the missing values (null, empty string etc.)
+  for all the columns with the mean.
+language: python
+name: Filling Missing Values With Mean
+pipeline: {}
+tags: []
+user:
+  username: stefan

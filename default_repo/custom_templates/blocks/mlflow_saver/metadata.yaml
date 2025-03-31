@@ -1,0 +1,20 @@
+block_type: data_exporter
+color: null
+configuration: null
+description: "This block is used to save AI models (Sklearn | PyTorch | ONNX) to MLFlow.\n\
+  \nThe input of this block should be in the following format:\n\n{\n  \"model\":\
+  \ \"sklearn | PyTorch state-dict (can be converted in something JSON serializable\
+  \ with ({k: v.tolist() for k, v in model.state_dict().items()}) | ONNX string\"\
+  ,\n  \"model_name\": \"string\",\n  \"model_type\": \"sklearn|pytorch|onnx\"\n \
+  \ \"images\": {\n    \"name\": \"base64_encode_image\"\n  },\n  \"parameters\":\
+  \ {\n    \"name\": \"value\"\n  },\n  \"metrics\": {\n    \"name\": \"value\"\n\
+  \  },\n  \"pytorch_model_class\": \"The name of the PyTorch model class that is\
+  \ represented by the state_dict\",\n    \"pytorch_model_parameters: [item, item]\
+  \ // A list of all the parameters that should be passed to the model class in order\
+  \ of appearance in the class\n}"
+language: python
+name: MLFlow Saver
+pipeline: {}
+tags: []
+user:
+  username: admin

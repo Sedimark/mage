@@ -1,0 +1,11 @@
+block_type: data_loader
+color: null
+configuration: null
+description: This block is used to load entities from a local NGSI-LD borker, and
+  create a dataframe out of the information.
+language: python
+name: NGSI-LD Loader
+pipeline: {}
+tags: []
+user:
+  username: admin

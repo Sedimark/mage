@@ -1,0 +1,10 @@
+block_type: transformer
+color: null
+configuration: null
+description: This block is used to convert a pandas DataFrame to NGSI-LD.
+language: python
+name: DataFrame to NGSI-LD
+pipeline: {}
+tags: []
+user:
+  username: admin

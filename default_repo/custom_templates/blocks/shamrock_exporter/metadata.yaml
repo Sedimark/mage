@@ -1,0 +1,10 @@
+block_type: data_exporter
+color: null
+configuration: null
+description: Dummy exporter for Shamrock federated framework.
+language: python
+name: Shamrock Exporter
+pipeline: {}
+tags: []
+user:
+  username: admin

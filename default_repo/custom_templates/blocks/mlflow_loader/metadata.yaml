@@ -1,0 +1,10 @@
+block_type: transformer
+color: null
+configuration: null
+description: This block is used to load a model from the local MLFlow into a pipeline.
+language: python
+name: MLFlow Loader
+pipeline: {}
+tags: []
+user:
+  username: admin

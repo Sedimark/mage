@@ -1,0 +1,10 @@
+block_type: data_loader
+color: null
+configuration: null
+description: A block that loads data from a MongoDB collection.
+language: python
+name: MongoDB Loader
+pipeline: {}
+tags: []
+user:
+  username: stefan
