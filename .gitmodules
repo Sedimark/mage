@@ -1,3 +1,7 @@
 [submodule "mage-crossformer"]
 	path = mage-crossformer
 	url = https://github.com/Sedimark/mage-crossformer.git
+[submodule "default_repo/utils/IE"]
+	path = default_repo/utils/IE
+	url = https://github.com/Sedimark/SEDIMARK_DPP.git
+	branch = version_2
