@@ -1,7 +1,6 @@
 import os
 import mlflow
 import numpy as np
-from sklearn.linear_model import LinearRegression
 from mage_ai.settings.repo import get_repo_path
 from os import path
 import yaml
@@ -9,7 +8,10 @@ import pandas as pd
 import datetime
 from mlflow import MlflowClient
 from mlflow.models import infer_signature
+
+#
 from default_repo.utils.crossformer_wrap import setup_fit
+import torch  # it should be installed when installing crossformer
 
 if "custom" not in globals():
     from mage_ai.data_preparation.decorators import custom
@@ -82,3 +84,42 @@ def train_crossformer(data, *args, **kwargs):
     test_result = trainer.test(model, data, ckpt_path="best")
 
     return data
+
+
+@data_exporter
+def export_train_crossformer(data, *args, **kwargs) -> None:
+    """export_train_crossformer
+
+    Export the trained crossformer model to MLFlow.
+
+    Args:
+        data (pd.DataFrame): values-only DataFrame from the upstream block.
+    """
+
+    # Setup the training configuration
+    model, dm, trainer = setup_fit(
+        cfg=cfg,
+        df=data,
+        callbacks=None,
+    )  # TODO: where to load the cfg?
+
+    # Create the signature for the model
+    input_example = torch.randn(1, cfg["in_len"], cfg["data_dim"])
+    output_example = model(input_example)
+    signature = infer_signature(
+        input_example.numpy(), output_example.detach().numpy()
+    )
+
+    # Start the MLflow run
+    client = MlflowClient()
+    mlflow.pytorch.autolog(checkpoint_monitor="val_SCORE", silent=True)
+    with mlflow.start_run() as run:
+        # Train the model
+        trainer.fit(model, dm)
+
+        # Log the model
+        mlflow.pytorch.log_model(
+            pytorch_model=model,
+            artifact_path="model",
+            signature=signature,
+        )
