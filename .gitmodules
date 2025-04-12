@@ -1,0 +1,3 @@
+[submodule "mage-crossformer"]
+	path = mage-crossformer
+	url = https://github.com/Sedimark/mage-crossformer.git
