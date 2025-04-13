@@ -18,6 +18,11 @@ if "custom" not in globals():
 if "test" not in globals():
     from mage_ai.data_preparation.decorators import test
 
+
+"""
+This part has no difference with the train script in data_exporters.
+TODO: It would be better to check with the Stefan's work
+"""
 # config MLFlow env
 config_path = path.join(get_repo_path(), "io_config.yaml")
 with open(config_path, "r") as f:
@@ -45,47 +50,6 @@ mlflow.set_tracking_uri("http://62.72.21.79:5000")  # change tracking uri later
 mlflow.pytorch.autolog()  # pay attention here, monitored metrics may be essential
 
 
-@transformer
-def train_crossformer(data, *args, **kwargs):
-    """
-    Train crossformer block.
-
-    Args:
-        data: The output from the upstream parent block
-        args: The output from any additional upstream blocks (if applicable)
-
-    Returns:
-        Anything (e.g. data frame, dictionary, array, int, str, etc.)
-    """
-
-    model, dm, trainer = setup_fit(
-        cfg=cfg,
-        df=data,
-        callbacks=None,
-    )
-
-    client = MlflowClient()
-    # signature
-    input_example = torch.randn(1, cfg["in_len"], cfg["data_dim"])
-    output_example = model(input_example)
-    signature = infer_signature(
-        input_example.numpy(), output_example.detach().numpy()
-    )
-    mlflow.pytorch.autolog(checkpoint_monitor="val_SCORE", silent=True)
-    with mlflow.start_run() as run:
-        trainer.fit(model, data)
-        mlflow.pytorch.log_model(
-            pytorch_model=model,
-            artifact_path="model",
-            signature=signature,
-        )
-    model_uri = f"runs:/{run.info.run_id}/model"
-    mlflow.register_model(model_uri, f"{cfg['experiment_name']}_best_model")
-    test_result = trainer.test(model, data, ckpt_path="best")
-
-    return data
-
-
 @data_exporter
 def export_train_crossformer(data, *args, **kwargs) -> None:
     """export_train_crossformer
@@ -110,16 +74,55 @@ def export_train_crossformer(data, *args, **kwargs) -> None:
         input_example.numpy(), output_example.detach().numpy()
     )
 
-    # Start the MLflow run
+    # MLFlow setup
     client = MlflowClient()
+
+    model_name = "crossformer_inference"
+    # TODO: add the case information to the model name
+
+    try:
+        reigsted_model = client.get_registered_model(model_name)
+    except Exception as e:
+        print(f"Model {model_name} not found, creating a new one.")
+        client.create_registered_model(
+            model_name,
+            tags={
+                "model_type": "crossformer",
+                "mage_model": "true",
+            },  # TODO: double-check
+        )
+
     mlflow.pytorch.autolog(checkpoint_monitor="val_SCORE", silent=True)
-    with mlflow.start_run() as run:
+    with mlflow.start_run(
+        experiment_id=mlflow.get_experiment_by_name(
+            "status_model"
+        ).experiment_id
+    ) as run:
+        # TODO: check the "status_model"
+
         # Train the model
         trainer.fit(model, dm)
 
         # Log the model
         mlflow.pytorch.log_model(
             pytorch_model=model,
-            artifact_path="model",
+            artifact_path="model",  # case_model_inference
             signature=signature,
+            reigsted_model_name="model",  # TODO: check the name
         )
+
+        # Set tags
+        mlflow.set_tag("model_type", "crossformer")
+        mlflow.set_tag("dataset", "CASE")  # TODO: pass the case name
+        # mlflow.set_tag("model_name", model_name)  # TODO: add the hyper-parameters
+
+        run_id = run.info.run_id
+
+    src_uri = f"runs://{run_id}/temperature_model_test"
+    result = client.create_model_version(
+        name=model_name,
+        source=src_uri,
+        run_id=run_id,
+    )
+
+    return model_name
