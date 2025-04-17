@@ -1,0 +1,8 @@
+[submodule "default_repo/utils/IE"]
+	path = default_repo/utils/IE
+	url = https://github.com/Sedimark/SEDIMARK_DPP.git
+	branch = version_2
+[submodule "default_repo/utils/crossformer_wrap"]
+	path = default_repo/utils/crossformer_wrap
+	url = https://github.com/Sedimark/mage-crossformer.git
+	branch = version_2
