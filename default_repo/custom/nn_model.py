@@ -1,9 +1,12 @@
 import os
 import numpy as np
 import mlflow
+import pandas as pd
 # import mlflow.keras
 import tensorflow as tf
 from mlflow.models.signature import infer_signature
+from mlflow.models.signature import ModelSignature
+from mlflow.types.schema import Schema, TensorSpec
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization
 from tensorflow.keras.callbacks import EarlyStopping
@@ -91,17 +94,17 @@ class NeuralNetworkModel:
 @custom
 def train_neural_network(data_dict, *args, **kwargs):
 
-    X_train = np.array(data_dict['X_train'])
-    X_test = np.array(data_dict['X_test'])
-    X_val = np.array(data_dict['X_val'])
+    X_train = pd.DataFrame.from_records(data_dict['X_train'])
+    X_test = pd.DataFrame.from_records(data_dict['X_test'])
+    X_val = pd.DataFrame.from_records(data_dict['X_val'])
     y_train = np.array(data_dict['y_train'])
     y_test = np.array(data_dict['y_test'])
     y_val = np.array(data_dict['y_val'])
 
-    print("Type and shape of X_train:", type(X_train), X_train.shape, X_train.dtype)
-    print("Type and shape of X_val:", type(X_val), X_val.shape, X_val.dtype)
-    print("Type and shape of y_train:", type(y_train), y_train.shape, y_train.dtype)
-    print("Type and shape of y_val:", type(y_val), y_val.shape, y_val.dtype)
+    # print("Type and shape of X_train:", type(X_train), X_train.shape, X_train.dtype)
+    # print("Type and shape of X_val:", type(X_val), X_val.shape, X_val.dtype)
+    # print("Type and shape of y_train:", type(y_train), y_train.shape, y_train.dtype)
+    # print("Type and shape of y_val:", type(y_val), y_val.shape, y_val.dtype)
 
     # print("First 5 elements of X_train:\n", X_train[:5])
     # print("First 5 elements of y_train:\n", y_train[:5])
@@ -110,7 +113,7 @@ def train_neural_network(data_dict, *args, **kwargs):
     with mlflow.start_run(experiment_id=current_experiment.experiment_id):
 
         nn_model = NeuralNetworkModel(input_dim=X_train.shape[1])
-        history = nn_model.train(X_train, y_train, X_val, y_val, epochs=100, batch_size=16)
+        history = nn_model.train(X_train, y_train, X_val, y_val, epochs=1, batch_size=16)
 
         # Make predictions
         y_train_pred = nn_model.predict(X_train)
@@ -142,16 +145,38 @@ def train_neural_network(data_dict, *args, **kwargs):
         mlflow.log_metric("Validation MAE", test_mae)
         mlflow.log_metric("Validation MAPE", test_mape)
 
-        # Example input to the model
-        input_example = X_train[:5]  # 5 samples from training set
+        # # Example input to the model
+        # input_example = X_train[:5]  # 5 samples from training set
 
-        # Infer the signature from input and output
-        pred_example = nn_model.predict(input_example)
-        signature = infer_signature(input_example, pred_example)
+        # # Infer the signature from input and output
+        # pred_example = nn_model.predict(input_example)
+        # signature = infer_signature(input_example, pred_example)
 
-        # Save model to MLflow
-        mlflow.tensorflow.log_model(model=nn_model.model, artifact_path="model", signature=signature, 
-                                    input_example=input_example)
+        # # Save model to MLflow
+        # mlflow.tensorflow.log_model(model=nn_model.model, artifact_path="model", signature=signature, 
+        #                             input_example=input_example)
+
+        # Correct shape with variable first dimension (-1)
+        input_schema = Schema([
+            TensorSpec(np.dtype('float32'), (-1, X_train.shape[1]), name="inputs")
+        ])
+
+        signature = ModelSignature(inputs=input_schema)
+
+        # Prepare input example
+        input_example = X_train[:5]
+
+        # Predict using numpy values (what your model expects)
+        pred_example = nn_model.predict(input_example.values)
+
+        # Log the model
+        mlflow.tensorflow.log_model(
+            model=nn_model.model,
+            artifact_path="model",
+            input_example=input_example,
+            signature=signature
+        )
+
 
         return {
             "metrics": {

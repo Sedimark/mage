@@ -214,6 +214,8 @@ def dwt_features(signal):
 def calc_entropy(x):
     return -np.sum(x * np.log2(x + np.finfo(float).eps))
 
+
+
 @test
 def test_output(output, *args) -> None:
     """

@@ -36,7 +36,9 @@ def outliers_handling(df):
     print("Number of extreme outliers:", outliers.sum())
 
     # Drop the rows with outliers in the 'label' column
-    df= df[~outliers]  
+    df= df[~outliers]
+
+    df = df.drop(columns='ID', axis=1)  
 
     return df
 

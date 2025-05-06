@@ -11,8 +11,8 @@ if 'test' not in globals():
 @custom
 def split_normalization(final_df):
 
-    X = final_df.iloc[:, :-1].values  # Features
-    y = final_df.iloc[:, -1].values  # Target variable
+    X = final_df.drop(columns='label', axis=1)
+    y = final_df['label']
 
     # Split the dataset into training (80%) and testing (20%) sets
     X_temp, X_test, y_temp, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -47,9 +47,9 @@ def split_normalization(final_df):
     print(f"y_val dtype: {y_val_norm.dtype}")
 
     data_dict = {
-        "X_train": X_train_norm.tolist(),
-        "X_test": X_test_norm.tolist(),
-        "X_val": X_val_norm.tolist(),
+        "X_train": X_train_norm.to_dict(orient='records'),
+        "X_test": X_test_norm.to_dict(orient='records'),
+        "X_val": X_val_norm.to_dict(orient='records'),
         "y_train": y_train_norm.tolist(),
         "y_test": y_test_norm.tolist(),
         "y_val": y_val_norm.tolist()
