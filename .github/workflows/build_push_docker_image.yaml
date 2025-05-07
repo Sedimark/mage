@@ -10,7 +10,8 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: self-hosted 
+    runs-on: self-hosted
+    timeout-minutes: 720
     permissions:
       packages: write
       contents: read
