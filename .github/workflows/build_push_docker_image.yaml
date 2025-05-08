@@ -33,3 +33,4 @@ jobs:
           debug: true
           registry: ghcr.io
           password: ${{ secrets.GITHUB_TOKEN }}
+          extra_args: --snapshot-mode=time
