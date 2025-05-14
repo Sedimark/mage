@@ -1,0 +1,10 @@
+block_type: transformer
+color: null
+configuration: null
+description: This block is used to extract specific columns from a pandas DataFrame and return them as a new pandas DataFrame.
+language: python
+name: Data Extractor
+pipeline: {}
+tags: []
+user:
+  username: Shahin

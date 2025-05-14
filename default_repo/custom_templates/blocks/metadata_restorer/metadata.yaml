@@ -1,0 +1,10 @@
+block_type: transformer
+color: null
+configuration: null
+description: This block is used to restore metadata (column names) back to the predicted DataFrame (from an AI model).
+language: python
+name: Metadata Restorer
+pipeline: {}
+tags: []
+user:
+  username: Shahin

@@ -1,0 +1,10 @@
+block_type: transformer
+color: null
+configuration: null
+description: This block is used to convert a pandas DataFrame into NGSI-LD json format.
+language: python
+name: Data Mapper
+pipeline: {}
+tags: []
+user:
+  username: Shahin

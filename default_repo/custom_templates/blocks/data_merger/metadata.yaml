@@ -1,0 +1,10 @@
+block_type: transformer
+color: null
+configuration: null
+description: This block is used to merge two pandas DataFrames by matching column names.
+language: python
+name: Data Merger
+pipeline: {}
+tags: []
+user:
+  username: Shahin
