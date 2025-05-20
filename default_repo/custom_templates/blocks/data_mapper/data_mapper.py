@@ -1,13 +1,11 @@
 from InteroperabilityEnabler.utils.data_mapper import data_conversion, restore_ngsi_ld_structure
 
-if 'transformer' not in globals():
-    from mage_ai.data_preparation.decorators import transformer
-if 'test' not in globals():
-    from mage_ai.data_preparation.decorators import test
+if 'data_exporter' not in globals():
+    from mage_ai.data_preparation.decorators import data_exporter
 
 
-@transformer
-def transform(annotated_df, *args, **kwargs):
+@data_exporter
+def data_mapper(annotated_df, *args, **kwargs):
     """
         Convert a DataFrame into NGSI-LD json format.
 
