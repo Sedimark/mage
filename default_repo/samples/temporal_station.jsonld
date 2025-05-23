@@ -1,0 +1,1269 @@
+{
+    "id": "urn:ngsild:BikeHireDockingStation:bikestation:MobilityManagement:336926289",
+    "type": "BikeHireDockingStation",
+    "description": {
+        "type": "Property",
+        "value": "Intercambiador Sardinero",
+        "instanceId": "instanceid:6ad35ddc-b067-4cdd-b148-f4214ed8febf"
+    },
+    "availableBikeNumber": [
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:d46a955d-36fb-4cc2-bf17-e042a26a4ec2",
+            "observedAt": "2024-09-26T07:34:26Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:4db0ece8-1f9a-4eee-96c3-075ba2741785",
+            "observedAt": "2024-09-26T07:30:55Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:004d85fc-2f09-4e00-8c60-cec8bf542eb2",
+            "observedAt": "2024-09-26T07:29:28Z"
+        },
+        {
+            "type": "Property",
+            "value": 4,
+            "instanceId": "instanceid:8e2c6616-4fb4-4170-82a8-43254ea00682",
+            "observedAt": "2024-09-26T07:29:06Z"
+        },
+        {
+            "type": "Property",
+            "value": 3,
+            "instanceId": "instanceid:2f914d20-aa72-4774-ad45-994ff9c46ac5",
+            "observedAt": "2024-09-26T07:28:52Z"
+        },
+        {
+            "type": "Property",
+            "value": 2,
+            "instanceId": "instanceid:988dd806-2970-4cfd-ac2a-52b8b9be891e",
+            "observedAt": "2024-09-25T19:01:26Z"
+        },
+        {
+            "type": "Property",
+            "value": 1,
+            "instanceId": "instanceid:f249a040-0d84-4c86-9398-3e37453b65aa",
+            "observedAt": "2024-09-25T19:01:20Z"
+        },
+        {
+            "type": "Property",
+            "value": 4,
+            "instanceId": "instanceid:b5cf012f-c227-41dc-8058-db4f7d741994",
+            "observedAt": "2024-09-25T16:53:57Z"
+        },
+        {
+            "type": "Property",
+            "value": 3,
+            "instanceId": "instanceid:05ad474f-d638-412f-ae5b-dc1d7374e633",
+            "observedAt": "2024-09-25T16:53:51Z"
+        },
+        {
+            "type": "Property",
+            "value": 2,
+            "instanceId": "instanceid:fab31d42-a75b-40c8-b280-d34d2cd159ca",
+            "observedAt": "2024-09-25T16:53:27Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:81f8a44d-05ff-458e-9f6b-16c281d874ff",
+            "observedAt": "2024-09-25T15:54:25Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:25720066-914c-437b-8d30-a3ea713f965e",
+            "observedAt": "2024-09-25T14:45:17Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:46c3794e-5027-4c94-8d89-afd09868b21f",
+            "observedAt": "2024-09-25T13:15:43Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:6deb48ef-070e-4a5e-8078-f61f46d4760a",
+            "observedAt": "2024-09-25T13:15:37Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:5475e71d-00cb-4ba7-9bd5-fbf5f9ee77e6",
+            "observedAt": "2024-09-25T12:52:51Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:c0f030fc-da26-45be-8fd4-8cda5ae083dd",
+            "observedAt": "2024-09-25T12:52:42Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:e3f9e39c-f498-4c9f-b7db-ec157eb522d3",
+            "observedAt": "2024-09-25T12:45:08Z"
+        },
+        {
+            "type": "Property",
+            "value": 4,
+            "instanceId": "instanceid:03e5533b-da1e-4f5a-b223-6c018018693d",
+            "observedAt": "2024-09-25T12:38:02Z"
+        },
+        {
+            "type": "Property",
+            "value": 3,
+            "instanceId": "instanceid:b2bbaaf0-9326-4638-8143-b4beb3826bab",
+            "observedAt": "2024-09-25T10:12:28Z"
+        },
+        {
+            "type": "Property",
+            "value": 2,
+            "instanceId": "instanceid:7882bc36-ed1d-4024-b177-817bd656f4da",
+            "observedAt": "2024-09-25T08:07:14Z"
+        },
+        {
+            "type": "Property",
+            "value": 3,
+            "instanceId": "instanceid:e80bfb61-1fb1-436f-816a-25c98ce57871",
+            "observedAt": "2024-09-25T07:56:10Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:2d59a4d5-7c9e-464d-a5a0-e63ce96e1439",
+            "observedAt": "2024-09-25T06:28:22Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:b21fef3c-214f-4e08-82cf-613ef6910dd6",
+            "observedAt": "2024-09-25T06:19:03Z"
+        },
+        {
+            "type": "Property",
+            "value": 9,
+            "instanceId": "instanceid:70e02eb4-f7a1-450c-9b8c-5681bb6023a1",
+            "observedAt": "2024-09-24T21:56:33Z"
+        },
+        {
+            "type": "Property",
+            "value": 9,
+            "instanceId": "instanceid:90e2c006-2708-4f6c-807d-7d05cbb54a8a",
+            "observedAt": "2024-09-24T21:56:32Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:c1d0751e-a523-4a27-91f2-6827ca216120",
+            "observedAt": "2024-09-24T21:41:57Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:d8fa78c6-b689-4cac-b066-a3add71ab924",
+            "observedAt": "2024-09-24T21:14:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:d79ec866-7675-4d86-953b-cee96f7873d9",
+            "observedAt": "2024-09-24T19:50:38Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:a7573e78-f71a-49c0-bf24-d65fbf8a9497",
+            "observedAt": "2024-09-24T19:50:32Z"
+        },
+        {
+            "type": "Property",
+            "value": 4,
+            "instanceId": "instanceid:7e91a1ce-cfab-4160-9faf-a5e62c2fe027",
+            "observedAt": "2024-09-24T19:13:16Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:7ec6c710-24c9-4ca4-9121-7d3e5f516306",
+            "observedAt": "2024-09-24T18:07:38Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:be8e0a39-9089-49f5-9fed-5d19a73338aa",
+            "observedAt": "2024-09-24T18:04:43Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:566bd855-d0dd-411d-b3ec-201765c60f6f",
+            "observedAt": "2024-09-24T18:04:11Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:524b3da7-463a-40f1-a1a5-8f32e1807977",
+            "observedAt": "2024-09-24T17:19:17Z"
+        },
+        {
+            "type": "Property",
+            "value": 9,
+            "instanceId": "instanceid:a71d9758-120a-48bc-a786-f34a4863a9fa",
+            "observedAt": "2024-09-24T17:05:29Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:11176d29-671c-46c8-877b-bd18fff3e1e8",
+            "observedAt": "2024-09-24T17:00:03Z"
+        },
+        {
+            "type": "Property",
+            "value": 9,
+            "instanceId": "instanceid:cf28404d-5999-413e-91f0-c9dcf6e11e2c",
+            "observedAt": "2024-09-24T16:51:11Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:f24831fe-e9bb-4dea-962e-42cc1617210f",
+            "observedAt": "2024-09-24T16:40:17Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:d0889e0f-834e-4c15-9de9-ab538686acd8",
+            "observedAt": "2024-09-24T16:32:20Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:3efef410-f6f0-4cb7-ba02-83646d9eb941",
+            "observedAt": "2024-09-24T16:32:20Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:047eacce-d024-4b7a-b907-86d1ba07f5cf",
+            "observedAt": "2024-09-24T16:30:50Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:63e7e99d-ff03-41ee-a061-d36ef2dab545",
+            "observedAt": "2024-09-24T16:08:21Z"
+        },
+        {
+            "type": "Property",
+            "value": 4,
+            "instanceId": "instanceid:dd4b9898-717d-4f35-a660-9fe238379ca2",
+            "observedAt": "2024-09-24T15:57:13Z"
+        },
+        {
+            "type": "Property",
+            "value": 3,
+            "instanceId": "instanceid:2b4800cc-52fa-45a3-8d0e-8360b46e9b18",
+            "observedAt": "2024-09-24T15:56:32Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:9e49ed45-3a3e-4af6-803a-0e07aec07044",
+            "observedAt": "2024-09-24T15:32:45Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:fc990291-762c-43cc-9792-811115f93012",
+            "observedAt": "2024-09-24T14:44:35Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:fda6c9b4-571a-49f7-bd8a-bfc798163a38",
+            "observedAt": "2024-09-24T13:32:47Z"
+        },
+        {
+            "type": "Property",
+            "value": 9,
+            "instanceId": "instanceid:903c299e-d2cd-486d-a5f0-1d6107fea2c6",
+            "observedAt": "2024-09-24T12:23:59Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:0b8aaf61-46a2-40cd-8fab-875059a89e93",
+            "observedAt": "2024-09-24T12:10:30Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:f21434ce-696a-4f6b-92b3-72e6c47c4be5",
+            "observedAt": "2024-09-24T11:59:15Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:3d6b9644-2f33-4406-bc39-1e601000e568",
+            "observedAt": "2024-09-24T11:48:14Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:c70131e6-4c7e-4037-ba7e-0b4e4373171f",
+            "observedAt": "2024-09-24T11:48:12Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:0db1a603-7e59-426e-9438-577741b10fa2",
+            "observedAt": "2024-09-24T11:24:51Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:262af843-567f-4edc-9ed8-ed4215abcc78",
+            "observedAt": "2024-09-24T09:23:59Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:17c7e961-6e77-4198-a7a8-a5f3cd2fd6c2",
+            "observedAt": "2024-09-24T09:23:59Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:97b8d8e1-21af-4020-8eff-75503d78e264",
+            "observedAt": "2024-09-24T07:18:48Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:a214a2ad-abd0-426f-8287-ae5c5688949c",
+            "observedAt": "2024-09-24T07:18:10Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:209556cf-5e5d-4fb1-aee1-c360e25a802e",
+            "observedAt": "2024-09-24T07:15:12Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:036b1250-3f0f-4de2-befc-fd0e0ff1268c",
+            "observedAt": "2024-09-24T06:58:39Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:09611a21-6251-47a7-ba37-40d10a77b3fa",
+            "observedAt": "2024-09-24T06:58:38Z"
+        },
+        {
+            "type": "Property",
+            "value": 4,
+            "instanceId": "instanceid:e9d8d057-bebf-413f-8e9e-8b1d33957935",
+            "observedAt": "2024-09-24T05:02:24Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:7036a00e-c6b4-4b57-980a-db80c6625f68",
+            "observedAt": "2024-09-24T04:51:34Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:2434db75-6b9a-43f6-a2ce-a5baec4718d0",
+            "observedAt": "2024-09-23T20:52:34Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:1760699a-146d-4f49-975f-2f71c3738d7b",
+            "observedAt": "2024-09-23T19:08:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 10,
+            "instanceId": "instanceid:a8193197-1c09-4021-af51-24242f9ce507",
+            "observedAt": "2024-09-23T18:19:38Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:bded15dc-c74e-4c11-b5a8-c41a5f6dc463",
+            "observedAt": "2024-09-23T18:02:23Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:49d86de3-0ab4-458a-b7b8-27380f7a5ad4",
+            "observedAt": "2024-09-23T17:56:32Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:00fb0cce-e2d4-48f6-aedb-b8bebf0088db",
+            "observedAt": "2024-09-23T17:45:48Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:f9052dd0-f88b-4ae2-a627-4acc14d6784e",
+            "observedAt": "2024-09-23T17:37:13Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:0441ef27-4d6a-4c74-ad9c-23cba5080b2f",
+            "observedAt": "2024-09-23T17:22:54Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:5bfdbf33-b709-472d-8ac8-fd6cc7ff4464",
+            "observedAt": "2024-09-23T17:02:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:4e2e7857-a279-48c4-8e71-f001a3a737b9",
+            "observedAt": "2024-09-23T16:34:49Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:3802a14c-28ed-4d57-a9d5-3660af5c461a",
+            "observedAt": "2024-09-23T16:31:14Z"
+        },
+        {
+            "type": "Property",
+            "value": 4,
+            "instanceId": "instanceid:881f6316-94f9-4842-9282-d1c56cab9c49",
+            "observedAt": "2024-09-23T16:25:42Z"
+        },
+        {
+            "type": "Property",
+            "value": 3,
+            "instanceId": "instanceid:2fd5a19f-7a39-476a-bf6b-f9b41772bb81",
+            "observedAt": "2024-09-23T16:09:27Z"
+        },
+        {
+            "type": "Property",
+            "value": 2,
+            "instanceId": "instanceid:656bf029-50ca-4801-a089-eee36e389fdb",
+            "observedAt": "2024-09-23T16:09:16Z"
+        },
+        {
+            "type": "Property",
+            "value": 3,
+            "instanceId": "instanceid:42b7c0dc-ba41-46ce-8110-cc401a604a8d",
+            "observedAt": "2024-09-23T15:22:46Z"
+        },
+        {
+            "type": "Property",
+            "value": 2,
+            "instanceId": "instanceid:73eb3e68-5f2b-4d8d-a08c-9743cba1a453",
+            "observedAt": "2024-09-23T14:32:02Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:63554f2f-6c4e-427c-b30d-115650d4aa16",
+            "observedAt": "2024-09-23T13:31:29Z"
+        },
+        {
+            "type": "Property",
+            "value": 9,
+            "instanceId": "instanceid:f7bfd21c-6215-4984-8652-22a6dec845f3",
+            "observedAt": "2024-09-23T13:03:09Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:5cb555d9-627e-4899-b88f-0be10fcd2bc4",
+            "observedAt": "2024-09-23T11:48:05Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:c843278d-a4ce-4ff3-a649-8661cc4722b2",
+            "observedAt": "2024-09-23T11:47:31Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:238b2b3c-f3b1-4ca2-8b3b-62577504de9f",
+            "observedAt": "2024-09-23T10:25:51Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:aea6ee97-cdb5-4c9c-9ff9-0965d964ea3a",
+            "observedAt": "2024-09-23T09:18:41Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:9a88285c-b9cf-4bc4-82d6-4b1273a550ee",
+            "observedAt": "2024-09-23T08:42:25Z"
+        },
+        {
+            "type": "Property",
+            "value": 6,
+            "instanceId": "instanceid:1c1be7bd-621c-44b4-93df-ff95edb43b57",
+            "observedAt": "2024-09-23T07:40:01Z"
+        },
+        {
+            "type": "Property",
+            "value": 5,
+            "instanceId": "instanceid:974214dc-4ef5-493b-9b39-cbacd6c76f45",
+            "observedAt": "2024-09-23T07:39:37Z"
+        },
+        {
+            "type": "Property",
+            "value": 4,
+            "instanceId": "instanceid:3e65eba1-b588-4e26-bb69-9e9d45e20384",
+            "observedAt": "2024-09-23T07:27:13Z"
+        },
+        {
+            "type": "Property",
+            "value": 3,
+            "instanceId": "instanceid:9da82f30-6223-47dd-bd39-a3a3e6d31815",
+            "observedAt": "2024-09-23T07:26:13Z"
+        },
+        {
+            "type": "Property",
+            "value": 2,
+            "instanceId": "instanceid:dcfabe56-85d8-42f6-8516-ef2291a7383b",
+            "observedAt": "2024-09-23T07:25:19Z"
+        },
+        {
+            "type": "Property",
+            "value": 1,
+            "instanceId": "instanceid:0458c37b-b19c-44c8-ba9f-fd00c58d0a50",
+            "observedAt": "2024-09-23T07:23:20Z"
+        },
+        {
+            "type": "Property",
+            "value": 2,
+            "instanceId": "instanceid:7a2e023e-9120-4f95-91de-0dac5bfcaad3",
+            "observedAt": "2024-09-23T07:23:05Z"
+        },
+        {
+            "type": "Property",
+            "value": 9,
+            "instanceId": "instanceid:14fca60e-7a94-4bfb-996b-ea1c43e4e330",
+            "observedAt": "2024-09-22T17:34:47Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:963b9170-bff4-4119-8036-2f71c97dc5b7",
+            "observedAt": "2024-09-22T17:31:50Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:07e7827a-09e4-472b-85d7-b523a0421555",
+            "observedAt": "2024-09-22T17:31:50Z"
+        },
+        {
+            "type": "Property",
+            "value": 9,
+            "instanceId": "instanceid:96087b1d-1a5c-4a7a-969f-b313c3252695",
+            "observedAt": "2024-09-22T17:03:48Z"
+        },
+        {
+            "type": "Property",
+            "value": 10,
+            "instanceId": "instanceid:482259e2-bf83-4634-af20-d05797699157",
+            "observedAt": "2024-09-22T16:51:04Z"
+        },
+        {
+            "type": "Property",
+            "value": 9,
+            "instanceId": "instanceid:b702f695-15d1-4444-ba4f-96ce51377c93",
+            "observedAt": "2024-09-22T16:50:56Z"
+        },
+        {
+            "type": "Property",
+            "value": 8,
+            "instanceId": "instanceid:cf109c31-25df-4ec5-af61-40fa40d9dde8",
+            "observedAt": "2024-09-22T16:45:39Z"
+        },
+        {
+            "type": "Property",
+            "value": 7,
+            "instanceId": "instanceid:ce5cb410-b0c0-4aa0-bf0f-e265b491639b",
+            "observedAt": "2024-09-22T16:38:28Z"
+        }
+    ],
+    "freeSlotNumber": [
+        {
+            "type": "Property",
+            "value": 14,
+            "instanceId": "instanceid:51c4dd3e-ceca-40e5-9d0e-803422789dd1",
+            "observedAt": "2024-09-26T07:34:26Z"
+        },
+        {
+            "type": "Property",
+            "value": 15,
+            "instanceId": "instanceid:45d40cfd-ce6f-461a-bf3f-51217d1898f1",
+            "observedAt": "2024-09-26T07:30:55Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:178a4f27-a9dd-40e4-a7c4-0f6f7f255e26",
+            "observedAt": "2024-09-26T07:29:28Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:a1616563-db7c-45a5-a3e2-592859167cb0",
+            "observedAt": "2024-09-26T07:29:06Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:6996c009-8b00-48ed-aabf-05c81a43df9d",
+            "observedAt": "2024-09-25T21:53:17Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:0b1d2819-8efa-48e7-9d8d-38ff5b1be85c",
+            "observedAt": "2024-09-25T19:01:26Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:7fcb3235-2740-462f-8ed8-c4add13c1d47",
+            "observedAt": "2024-09-25T19:01:26Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:176776af-aee8-4bbf-be34-9ea7df9194f1",
+            "observedAt": "2024-09-25T18:12:17Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:528b3f90-8038-4077-841c-57e9c5c48281",
+            "observedAt": "2024-09-25T18:00:54Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:b1ebedf0-955a-48a2-a18e-53a1db87e8eb",
+            "observedAt": "2024-09-25T16:53:57Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:b1dc9210-6593-4096-b851-d3e5713381f7",
+            "observedAt": "2024-09-25T16:53:51Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:ec68449f-32dc-4d78-b9e0-c400c748f9bc",
+            "observedAt": "2024-09-25T15:27:06Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:13206fad-442c-48b6-9312-e349a7e0299d",
+            "observedAt": "2024-09-25T14:56:06Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:6863dc39-7aa6-4fd8-b8a4-367bbebdfdc0",
+            "observedAt": "2024-09-25T14:56:06Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:3e291e69-1c4a-420a-a304-979db1ca5bbf",
+            "observedAt": "2024-09-25T14:45:17Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:749bf739-6ae5-4a3e-a588-d49beb29dd20",
+            "observedAt": "2024-09-25T13:31:24Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:475f72a6-f3ad-4a8e-84fe-f00afec0b51e",
+            "observedAt": "2024-09-25T13:15:43Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:73088bc8-d766-443b-81eb-4c4966184475",
+            "observedAt": "2024-09-25T13:15:37Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:db0c5f6e-c263-492f-b69b-28a3e33272bc",
+            "observedAt": "2024-09-25T12:52:42Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:a6ae9765-b2bb-46ea-a2ee-7007ddd5ecf1",
+            "observedAt": "2024-09-25T12:45:09Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:01a6d7eb-e952-4c58-b6e5-85a6446f6280",
+            "observedAt": "2024-09-25T12:41:43Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:7bbb8853-8ece-4477-8061-15bea1ba1263",
+            "observedAt": "2024-09-25T12:38:02Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:d91e7e62-9431-4359-a8d5-c1b3e1dc9175",
+            "observedAt": "2024-09-25T12:36:56Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:d8d3bdba-66eb-48b8-a86e-06a8282c9814",
+            "observedAt": "2024-09-25T10:23:29Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:5cc680f9-396f-440e-ba5a-41cf48ceedfe",
+            "observedAt": "2024-09-25T09:30:02Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:aacb09ab-bbb7-447b-a173-42d5e89e7b6f",
+            "observedAt": "2024-09-25T08:04:00Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:fa5966c7-e8da-4b84-a685-be58a056978b",
+            "observedAt": "2024-09-25T08:03:13Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:fa45b072-8ce6-4cb6-964b-ac33a11c3dbf",
+            "observedAt": "2024-09-25T07:56:10Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:186a7dbd-ca86-4c39-9ca8-a03fceefbab2",
+            "observedAt": "2024-09-25T06:28:22Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:398a6066-68b6-4a27-a5d2-6cf762ee6751",
+            "observedAt": "2024-09-24T21:56:33Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:c359dfc9-a1b7-4e60-9571-9a6761c5a26e",
+            "observedAt": "2024-09-24T21:56:32Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:00b06f81-1554-4f87-955a-c58d6c9e39fd",
+            "observedAt": "2024-09-24T21:41:57Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:1facd540-d291-4c8a-84e8-94c6b59837a5",
+            "observedAt": "2024-09-24T21:14:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:ba6fe8c9-4e3e-49dc-a8b0-90b6380c5be2",
+            "observedAt": "2024-09-24T21:14:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:446c2a30-483f-44a8-a9cc-04af74eb1b46",
+            "observedAt": "2024-09-24T19:50:38Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:495ea933-a28d-4da9-8071-63053a2f805a",
+            "observedAt": "2024-09-24T19:50:32Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:b77dd86c-86aa-47b0-8a6f-35183fc4dafc",
+            "observedAt": "2024-09-24T19:13:16Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:b8bc6cbb-86d6-40b4-b459-98b510521f58",
+            "observedAt": "2024-09-24T18:07:38Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:ca435d86-74e6-47d0-aee9-e7c598cfae46",
+            "observedAt": "2024-09-24T18:04:43Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:b811eebe-67e7-4849-81c5-d56fa440ed1e",
+            "observedAt": "2024-09-24T17:29:19Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:c95aeff3-c667-4fd2-a671-06c211371526",
+            "observedAt": "2024-09-24T17:19:17Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:3289d3ce-bf41-445e-9763-e1f21394477e",
+            "observedAt": "2024-09-24T17:03:20Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:46bffd1e-1522-431d-99ee-35d91c2bb452",
+            "observedAt": "2024-09-24T17:02:14Z"
+        },
+        {
+            "type": "Property",
+            "value": 15,
+            "instanceId": "instanceid:b46d3a0c-98ec-46f8-ac02-cc05881a5978",
+            "observedAt": "2024-09-24T16:51:44Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:02615d10-35fb-4bd3-8100-bf81ba9a0cba",
+            "observedAt": "2024-09-24T16:51:05Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:c13f369c-89e6-4751-b4fb-bccfba2ce505",
+            "observedAt": "2024-09-24T16:32:20Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:669fac31-7c88-4aef-8582-7ba67b09f2e0",
+            "observedAt": "2024-09-24T16:32:20Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:3d4d9bfa-df6b-4b49-ad2b-2f01ceee2b68",
+            "observedAt": "2024-09-24T16:30:50Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:df8b6e17-33df-4353-8f48-88a3dde103dd",
+            "observedAt": "2024-09-24T16:26:20Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:ec202add-e222-4df9-9844-d6eaa43fe331",
+            "observedAt": "2024-09-24T16:07:53Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:7f798a9a-0004-40a1-9fbf-d228e6503ef5",
+            "observedAt": "2024-09-24T16:07:52Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:3763743f-7140-42ca-b6ae-4bf23aacce32",
+            "observedAt": "2024-09-24T15:57:13Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:da94426d-465a-451d-80a6-0fb5034168d1",
+            "observedAt": "2024-09-24T15:32:45Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:d959110a-a795-40e3-8679-49c8f26ac8ea",
+            "observedAt": "2024-09-24T15:12:42Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:2775ba66-787a-4682-8d4b-da5ecdb0e713",
+            "observedAt": "2024-09-24T14:44:35Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:8cb3734d-9cf4-45e4-ab42-32c1e1d0e840",
+            "observedAt": "2024-09-24T14:44:35Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:0c07f3cb-1ddf-4dee-a422-fdeddb134030",
+            "observedAt": "2024-09-24T13:50:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:bf06bab6-23ea-4198-b35b-ff09ed0ceea8",
+            "observedAt": "2024-09-24T13:50:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:90eedb27-934d-43f7-b5ff-ea2fc0d3bd90",
+            "observedAt": "2024-09-24T13:50:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:725b77fa-1260-4ec1-acaa-41212dcc4ca3",
+            "observedAt": "2024-09-24T13:32:47Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:c7f719ff-4ef3-421b-9d00-b12c1be66730",
+            "observedAt": "2024-09-24T12:24:00Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:3e72aede-2b97-4210-b9bf-32d8b51e0af5",
+            "observedAt": "2024-09-24T12:24:00Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:67a5b476-5ba0-41d6-8a96-89364c2b2195",
+            "observedAt": "2024-09-24T12:13:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:34658d68-8152-4fcf-bb0f-c1be462d0fdf",
+            "observedAt": "2024-09-24T12:10:30Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:34b7f0d8-3b8b-4c66-a19a-88068f50244f",
+            "observedAt": "2024-09-24T11:59:15Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:65d29a10-dc13-46a0-94a4-50cea957fbc4",
+            "observedAt": "2024-09-24T11:48:12Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:70b0dfbb-d132-48ea-bc69-d38daf01b2de",
+            "observedAt": "2024-09-24T11:48:12Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:3dfada81-ddfe-4d83-b503-79656d2f4ad7",
+            "observedAt": "2024-09-24T11:47:38Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:69ad0373-e9ec-4888-ab9d-c603ce27b0d6",
+            "observedAt": "2024-09-24T09:23:59Z"
+        },
+        {
+            "type": "Property",
+            "value": 15,
+            "instanceId": "instanceid:39cf100d-9733-4fc4-8c52-42c1fb3492b1",
+            "observedAt": "2024-09-24T07:18:10Z"
+        },
+        {
+            "type": "Property",
+            "value": 14,
+            "instanceId": "instanceid:2e9ba304-e4e9-4cf5-b078-5825f19e4447",
+            "observedAt": "2024-09-24T07:15:40Z"
+        },
+        {
+            "type": "Property",
+            "value": 15,
+            "instanceId": "instanceid:f6f3f869-1298-42d0-a905-699aafe2564a",
+            "observedAt": "2024-09-24T07:15:12Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:63d86b0c-06cb-45f3-ab2f-59d154889d0a",
+            "observedAt": "2024-09-24T07:14:47Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:518f1436-556a-4298-a4b0-32744713855f",
+            "observedAt": "2024-09-24T06:58:39Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:79ae4397-0b4e-4528-9528-e6790a73158b",
+            "observedAt": "2024-09-24T06:58:38Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:484ebb6f-4947-49ce-9e7e-b13e93c4684d",
+            "observedAt": "2024-09-24T06:33:34Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:7b22d32d-b43e-45d4-a52a-fec2de44656b",
+            "observedAt": "2024-09-24T06:14:58Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:c160f48f-3297-4b46-8415-1aea3420fd81",
+            "observedAt": "2024-09-24T05:01:32Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:83e4cc1f-0554-483b-ac29-bc2359ad1af9",
+            "observedAt": "2024-09-24T04:51:34Z"
+        },
+        {
+            "type": "Property",
+            "value": 14,
+            "instanceId": "instanceid:d873c1a8-391a-4a51-b1a7-ae58b54ab2ee",
+            "observedAt": "2024-09-23T19:08:36Z"
+        },
+        {
+            "type": "Property",
+            "value": 15,
+            "instanceId": "instanceid:e2fdff9e-c0f2-47b4-9596-86ffd09e0890",
+            "observedAt": "2024-09-23T18:19:38Z"
+        },
+        {
+            "type": "Property",
+            "value": 14,
+            "instanceId": "instanceid:a687cbf1-2181-4bbf-87c4-6e9c1c229e1f",
+            "observedAt": "2024-09-23T18:02:23Z"
+        },
+        {
+            "type": "Property",
+            "value": 15,
+            "instanceId": "instanceid:0e94d028-5713-4f75-83a1-83360ea0a544",
+            "observedAt": "2024-09-23T17:56:32Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:71bf01a8-b3da-472c-9082-73800e062216",
+            "observedAt": "2024-09-23T17:45:48Z"
+        },
+        {
+            "type": "Property",
+            "value": 15,
+            "instanceId": "instanceid:0db7cb18-0e99-4dd2-ac34-97fa38b1c0a6",
+            "observedAt": "2024-09-23T17:37:13Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:76c86ea5-927a-490c-8c81-4b6a09ac2abe",
+            "observedAt": "2024-09-23T17:18:25Z"
+        },
+        {
+            "type": "Property",
+            "value": 14,
+            "instanceId": "instanceid:7df41fe9-2ce7-4ec2-83bc-28e86a7466a5",
+            "observedAt": "2024-09-23T17:07:33Z"
+        },
+        {
+            "type": "Property",
+            "value": 15,
+            "instanceId": "instanceid:eb06a725-070c-46d9-9a9c-1a530398d3cd",
+            "observedAt": "2024-09-23T16:34:49Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:094040cd-3a35-447a-8c0e-162408811557",
+            "observedAt": "2024-09-23T16:26:32Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:83e28a5a-d4cc-4cfd-beec-8a3419644958",
+            "observedAt": "2024-09-23T16:25:42Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:6e296f8b-f659-4161-8c21-7c4d4e4a682a",
+            "observedAt": "2024-09-23T16:09:27Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:e65d8cc5-3845-4cbc-b176-146ff7439e7f",
+            "observedAt": "2024-09-23T16:09:16Z"
+        },
+        {
+            "type": "Property",
+            "value": 20,
+            "instanceId": "instanceid:d49a973f-04dc-46db-b098-562da361e913",
+            "observedAt": "2024-09-23T15:22:46Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:8f27e330-363f-4d31-b5fa-71ad61c3d8d0",
+            "observedAt": "2024-09-23T15:12:20Z"
+        },
+        {
+            "type": "Property",
+            "value": 19,
+            "instanceId": "instanceid:3579c7e0-d5e9-4cf6-b6f2-961c9b8c4553",
+            "observedAt": "2024-09-23T15:07:53Z"
+        },
+        {
+            "type": "Property",
+            "value": 18,
+            "instanceId": "instanceid:dd84c884-4790-48e6-85cb-9d8d35fd497d",
+            "observedAt": "2024-09-23T14:32:02Z"
+        },
+        {
+            "type": "Property",
+            "value": 17,
+            "instanceId": "instanceid:8da13492-1245-4c05-b125-956f18e845dc",
+            "observedAt": "2024-09-23T13:31:29Z"
+        },
+        {
+            "type": "Property",
+            "value": 16,
+            "instanceId": "instanceid:a67adbd4-59cc-4687-a42c-eb7108c6ea44",
+            "observedAt": "2024-09-23T13:31:29Z"
+        },
+        {
+            "type": "Property",
+            "value": 14,
+            "instanceId": "instanceid:0675c703-0c03-440e-a53c-b256c0228c32",
+            "observedAt": "2024-09-23T13:03:09Z"
+        },
+        {
+            "type": "Property",
+            "value": 15,
+            "instanceId": "instanceid:36e7b93a-4749-4888-9230-6e16b8094bbf",
+            "observedAt": "2024-09-23T12:40:36Z"
+        }
+    ],
+    "observationDateTime": {
+        "type": "Property",
+        "value": "2024-07-18T11:43:56+02:00",
+        "instanceId": "instanceid:01c76a89-bcf7-4f47-9f79-b4dc5e75bc04"
+    },
+    "outOfServiceSlotNumber": {
+        "type": "Property",
+        "value": 0,
+        "instanceId": "instanceid:5056d450-9490-4a45-b657-8b448efc1280",
+        "observedAt": "2024-09-18T08:15:37Z"
+    },
+    "provider": {
+        "type": "Property",
+        "value": "TUeBICI",
+        "instanceId": "instanceid:0ba1a7b2-edc6-498a-8779-9b07cb71018e"
+    },
+    "stationCode": {
+        "type": "Property",
+        "value": "37400",
+        "instanceId": "instanceid:dc510f61-8ba0-4df1-8d6a-13016dd2fe8b"
+    },
+    "stationName": {
+        "type": "Property",
+        "value": "Intercambiador Sardinero ",
+        "instanceId": "instanceid:2c27a986-0697-4827-9aa8-f5c2fcb97bc1"
+    },
+    "totalSlotNumber": {
+        "type": "Property",
+        "value": 20,
+        "instanceId": "instanceid:2aba9a23-e6db-4863-a0eb-dd116908220f"
+    },
+    "source": {
+        "type": "Property",
+        "value": "Santander Smart City",
+        "instanceId": "instanceid:1b6e38fc-a0af-43d7-814f-bb06c4d62c4a"
+    },
+    "location": {
+        "type": "GeoProperty",
+        "value": {
+            "type": "Point",
+            "coordinates": [
+                43.477347,
+                -3.791047
+            ]
+        },
+        "instanceId": "instanceid:0b54df62-102a-4312-bc1b-663169d741d4"
+    },
+    "status": {
+        "type": "Property",
+        "value": "working",
+        "instanceId": "instanceid:0e11da07-e118-4a3e-95a1-9a3bb1a59fb8"
+    },
+    "@context": [
+        "https://raw.githubusercontent.com/smart-data-models/dataModel.Transportation/master/context.jsonld",
+        "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld"
+    ]
+}

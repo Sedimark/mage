@@ -1,4 +1,4 @@
-block_type: transformer
+block_type: data_exporter
 color: null
 configuration: null
 description: This block is used to convert a pandas DataFrame into NGSI-LD json format.
