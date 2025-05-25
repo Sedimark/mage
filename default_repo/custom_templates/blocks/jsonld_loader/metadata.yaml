@@ -1,0 +1,14 @@
+block_type: data_loader
+color: null
+configuration:
+    entity_id: '{     "type": "drop_down",     "description": "This is the ID of the
+      entity that is stored in the NGSI-LD Broker",     "values": ["urn:ngsi-ld:WeatherInformation:Forecasted:Hourly:France:Les_Orres"]
+      }'
+    start_time: '{     "type": "date",     "description": "The date after which the
+      data from the broker will be loaded!",     "format": "%Y-%m-%dT%H:%M:%SZ" }'
+description: This block loads data from the local NGSI-LD broker directly in JSON-LD.
+language: python
+name: JSONLD_LOADER
+pipeline: {}
+tags: []
+user: {}
