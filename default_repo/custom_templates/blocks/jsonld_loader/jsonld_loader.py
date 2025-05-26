@@ -9,8 +9,8 @@ if 'test' not in globals():
     from mage_ai.data_preparation.decorators import test
 
 
-def load_data(entity_id: str, start_time: str) -> Any:
-    context = os.getenv("NGSI_LD_LINK_CONTEXT", "")
+def load_temporal_data(entity_id: str, start_time: str) -> Any:
+    context = os.getenv("NGSI_LD_LINK_CONTEXT", "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld")
     host = os.getenv("NGSI_LD_HOST", "")
 
     if start_time == "":
@@ -36,6 +36,21 @@ def load_data(entity_id: str, start_time: str) -> Any:
     return response.json()
 
 
+def load_contextual_data(entity_id) -> Any:
+    context = os.getenv("NGSI_LD_LINK_CONTEXT", "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld")
+    host = os.getenv("NGSI_LD_HOST", "")
+
+    headers = {
+        "Link": f'<{context}>; rel="http://www.w3.org/ns/json-ld#context"; type="application/ld+json"'
+    }
+
+    url = f"{host}/ngsi-ld/v1/entities/{entity_id}"
+
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+
+    return response.json()
+
 
 @data_loader
 def load_data(*args, **kwargs):
@@ -51,9 +66,10 @@ def load_data(*args, **kwargs):
     if entity_id == "":
         raise ValueError("entity_id must be provided")
 
-    data = load_data(entity_id, start_time)
+    temporal_data = load_temporal_data(entity_id, start_time)
+    contextual_data = load_contextual_data(entity_id)
 
-    return data
+    return temporal_data, contextual_data
 
 
 @test
