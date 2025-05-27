@@ -5,17 +5,17 @@ if 'data_exporter' not in globals():
 
 
 @data_exporter
-def data_formatter(FILE_PATH, *args, **kwargs):
+def data_formatter(data, *args, **kwargs):
     """
     Read data from different file types (xls, xlsx, csv, json, jsonld) and
     convert them into a pandas DataFrame.
 
     Args:
-        FILE_PATH (str): The path to the data file.
+        data (str): the data to be converted.
 
     Return:
         Pandas DataFrame.
     """
-    df = data_to_dataframe(FILE_PATH)
+    df = data_to_dataframe(data)
 
     return df
