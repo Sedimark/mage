@@ -62,16 +62,6 @@ If you want to build the image locally from this repository, do the following:
 
 ---
 
-## Pull the Docker Image
-
-You can pull the image directly without building:
-
-```bash
-docker pull ghcr.io/your-org-or-username/sedimark-mage:latest
-```
-
----
-
 ## Run the Docker Container
 
 After building or pulling the image, you can run it:
@@ -88,6 +78,14 @@ docker run -itd --rm -p 6789:6789 -v ./default_repo:/home/src/default_repo sedim
 - `-p 6789:6789` – Exposes port `6789` so you can access Mage’s web interface at `http://localhost:6789`.
     
 - `-v ./default_repo:/home/src/default_repo` – Mounts your local directory (`./default_repo`) into the container’s filesystem at `/home/src/default_repo`. Any pipelines or configuration you create in that directory will be saved on your host machine.
+
+If NGSI-LD broker is needed, deploy the broker and place it in an external network, by default should be **sharde_network**, and run:
+
+```bash
+docker run -itd --rm -p 6789:6789 -v ./default_repo:/home/src/default_repo --network shared_network -e NGSI_LD_HOST=http://api-gateway:8080 -e sedimark-mage 
+```
+
+**api-gateway** is the name of the broker api as set in the docker compose of the broker and needs to be changed accordingly
 
 ### Access Mage
 
