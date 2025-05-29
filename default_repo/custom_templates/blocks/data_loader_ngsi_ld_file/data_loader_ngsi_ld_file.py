@@ -30,21 +30,9 @@ def data_loader_ngsi_ld_file(*args, **kwargs):
     response.raise_for_status()
 
     # Parse response as JSON
-    # data = response.json()
+    data = response.json()
 
-    # Save to temp file
-    parsed_url = urlparse(url)
-    file_name = os.path.basename(unquote(parsed_url.path))
-
-    print(file_name)
-
-    temp_file_path = f'./default_repo/samples/{file_name}'
-
-    with open(temp_file_path, 'w', encoding='utf-8') as f:
-        f.write(response.text)
-
-    return temp_file_path
-
+    return data
 
 # @test
 def test_output(output, *args) -> None:
