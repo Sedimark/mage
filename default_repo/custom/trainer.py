@@ -9,9 +9,8 @@ import datetime
 from mlflow import MlflowClient
 from mlflow.models import infer_signature
 
-#
-from default_repo.utils.crossformer_wrap import setup_fit
-import torch  # it should be installed when installing crossformer
+from default_repo.utils.crossformer_wrap.wrap import setup_fit, cfg_base
+import torch 
 
 if "custom" not in globals():
     from mage_ai.data_preparation.decorators import custom
@@ -20,15 +19,15 @@ if "test" not in globals():
 
 
 # Set MLflow environment variables
-os.environ['MLFLOW_TRACKING_USERNAME'] = 'admin'
-os.environ['MLFLOW_TRACKING_PASSWORD'] = 'password'
-os.environ['AWS_ACCESS_KEY_ID'] = 'super'
-os.environ['AWS_SECRET_ACCESS_KEY'] = 'supersecret'
-os.environ['MLFLOW_S3_ENDPOINT_URL'] = 'https://minio.sedimark.work'
-os.environ['MLFLOW_TRACKING_INSECURE_TLS'] = 'true'
+# os.environ['MLFLOW_TRACKING_USERNAME'] = 'admin'
+# os.environ['MLFLOW_TRACKING_PASSWORD'] = 'password'
+# os.environ['AWS_ACCESS_KEY_ID'] = 'super'
+# os.environ['AWS_SECRET_ACCESS_KEY'] = 'supersecret'
+# os.environ['MLFLOW_S3_ENDPOINT_URL'] = 'https://minio.sedimark.work'
+# os.environ['MLFLOW_TRACKING_INSECURE_TLS'] = 'true'
 
 # Set MLflow tracking URI
-mlflow.set_tracking_uri("https://mlflow.sedimark.work/")
+mlflow.set_tracking_uri("http://172.20.132.105:5000") # it is local ip and should be replaced by https://mlflow.sedimark.work/ 
 
 # Create experiment
 experiment_name = "CrossFormer"
@@ -43,11 +42,6 @@ if mlflow.active_run():
     mlflow.end_run()
 
 
-if 'custom' not in globals():
-    from mage_ai.data_preparation.decorators import custom
-if 'test' not in globals():
-    from mage_ai.data_preparation.decorators import test
-
 
 @custom
 def train_crossformer(data, *args, **kwargs):
@@ -59,7 +53,10 @@ def train_crossformer(data, *args, **kwargs):
     """
     # Specify your custom logic here
 
-
+    # load cfg & consider apply new changes to cfg
+    # TODO: We should connect with UI to adjust the cfg
+    cfg = cfg_base
+    
     # Setup the training configuration
     model, dm, trainer = setup_fit(
         cfg=cfg,
@@ -73,30 +70,9 @@ def train_crossformer(data, *args, **kwargs):
     signature = infer_signature(
         input_example.numpy(), output_example.detach().numpy()
     )
-
-    # MLFlow setup
-    client = MlflowClient()
-
-    model_name = "crossformer_inference"
-    # TODO: add the case information to the model name
-
-    try:
-        reigsted_model = client.get_registered_model(model_name)
-    except Exception as e:
-        print(f"Model {model_name} not found, creating a new one.")
-        client.create_registered_model(
-            model_name,
-            tags={
-                "model_type": "crossformer",
-                "mage_model": "true",
-            },  # TODO: double-check
-        )
-
     mlflow.pytorch.autolog(checkpoint_monitor="val_SCORE", silent=True)
     with mlflow.start_run(
-        experiment_id=mlflow.get_experiment_by_name(
-            "status_model"
-        ).experiment_id
+        experiment_id=current_experiment.experiment_id
     ) as run:
         # TODO: check the "status_model"
 
@@ -106,28 +82,14 @@ def train_crossformer(data, *args, **kwargs):
         # Log the model
         mlflow.pytorch.log_model(
             pytorch_model=model,
-            artifact_path="model",  # case_model_inference
+            artifact_path="model",
             signature=signature,
-            reigsted_model_name="model",  # TODO: check the name
+            registered_model_name="Trained_Model",  # TODO: check the name
         )
+    
+    test_result = trainer.test(model, dm, ckpt_path="best")
 
-        # Set tags
-        mlflow.set_tag("model_type", "crossformer")
-        mlflow.set_tag("dataset", "CASE")  # TODO: pass the case name
-        # mlflow.set_tag("model_name", model_name)  # TODO: add the hyper-parameters
-
-        run_id = run.info.run_id
-
-    src_uri = f"runs://{run_id}/temperature_model_test"
-    result = client.create_model_version(
-        name=model_name,
-        source=src_uri,
-        run_id=run_id,
-    )
-
-    return model_name
-
-    return {}
+    return test_result, registered_model_name
 
 
 @test

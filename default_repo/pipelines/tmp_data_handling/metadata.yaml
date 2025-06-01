@@ -13,20 +13,19 @@ blocks:
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - data_formatter
+  - local_loader
   uuid: data_mapper
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
-  downstream_blocks:
-  - data_formatter
+  downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: data_loader_from_url
   retry_config: null
-  status: executed
+  status: failed
   timeout: null
   type: data_loader
   upstream_blocks: []
@@ -34,8 +33,7 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
-  downstream_blocks:
-  - data_mapper
+  downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -45,9 +43,26 @@ blocks:
   status: executed
   timeout: null
   type: data_exporter
-  upstream_blocks:
-  - data_loader_from_url
+  upstream_blocks: []
   uuid: data_formatter
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_loaders/local_loader.py
+  downstream_blocks:
+  - data_mapper
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: local_loader
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: local_loader
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
@@ -71,5 +86,7 @@ spark_config: {}
 tags: []
 type: python
 uuid: tmp_data_handling
+variables:
+  filepath: default_repo/broker_sample.csv
 variables_dir: /home/src/mage_data/default_repo
 widgets: []

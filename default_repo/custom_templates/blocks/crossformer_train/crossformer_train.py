@@ -9,9 +9,8 @@ import datetime
 from mlflow import MlflowClient
 from mlflow.models import infer_signature
 
-#
-from default_repo.utils.crossformer_wrap import setup_fit, cfg_base
-import torch  # it should be installed when installing crossformer
+from default_repo.utils.crossformer_wrap.wrap import setup_fit, cfg_base
+import torch 
 
 if "custom" not in globals():
     from mage_ai.data_preparation.decorators import custom
@@ -28,7 +27,7 @@ os.environ['MLFLOW_S3_ENDPOINT_URL'] = 'https://minio.sedimark.work'
 os.environ['MLFLOW_TRACKING_INSECURE_TLS'] = 'true'
 
 # Set MLflow tracking URI
-mlflow.set_tracking_uri("https://mlflow.sedimark.work/")
+mlflow.set_tracking_uri("https://mlflow.sedimark.work/") 
 
 # Create experiment
 experiment_name = "CrossFormer"
@@ -55,14 +54,15 @@ def train_crossformer(data, *args, **kwargs):
     # Specify your custom logic here
 
     # load cfg & consider apply new changes to cfg
+    # TODO: We should connect with UI to adjust the cfg
     cfg = cfg_base
-
+    
     # Setup the training configuration
     model, dm, trainer = setup_fit(
         cfg=cfg,
         df=data,
         callbacks=None,
-    )  # TODO: where to load the cfg?
+    )
 
     # Create the signature for the model
     input_example = torch.randn(1, cfg["in_len"], cfg["data_dim"])
@@ -70,41 +70,27 @@ def train_crossformer(data, *args, **kwargs):
     signature = infer_signature(
         input_example.numpy(), output_example.detach().numpy()
     )
-
     mlflow.pytorch.autolog(checkpoint_monitor="val_SCORE", silent=True)
     with mlflow.start_run(
         experiment_id=current_experiment.experiment_id
     ) as run:
-        # TODO: check the "status_model"
 
         # Train the model
         trainer.fit(model, dm)
-
+        
+        test_result = trainer.test(model, dm, ckpt_path="best")
+        
         # Log the model
         mlflow.pytorch.log_model(
             pytorch_model=model,
             artifact_path="model",  # case_model_inference
             signature=signature,
-            reigsted_model_name="model",  # TODO: check the name
+            registered_model_name="model",  # TODO: check the name
         )
+    
+    
 
-        # Set tags
-        mlflow.set_tag("model_type", "crossformer")
-        mlflow.set_tag("dataset", "CASE")  # TODO: pass the case name
-        # mlflow.set_tag("model_name", model_name)  # TODO: add the hyper-parameters
-
-        run_id = run.info.run_id
-
-    src_uri = f"runs://{run_id}/temperature_model_test"
-    result = client.create_model_version(
-        name=model_name,
-        source=src_uri,
-        run_id=run_id,
-    )
-
-    return model_name
-
-    return {}
+    return test_result
 
 
 @test
