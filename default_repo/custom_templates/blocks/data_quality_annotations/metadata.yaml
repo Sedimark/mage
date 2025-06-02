@@ -1,0 +1,10 @@
+block_type: transformer
+color: null
+configuration: null
+description: This block is used to add quality annotations to a DataFrame for either instance-level or attribute-level annotations (but not both).
+language: python
+name: Data Quality Annotations
+pipeline: {}
+tags: []
+user:
+  username: Shahin
