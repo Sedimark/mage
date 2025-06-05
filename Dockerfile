@@ -1,4 +1,4 @@
-FROM mageai/mageai:latest
+FROM mageai/mageai:latest AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl git build-essential libssl-dev zlib1g-dev \
@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 ENV PYENV_ROOT="/root/.pyenv"
 ENV PATH="$PYENV_ROOT/bin:$PATH"
-
 RUN curl -fsSL https://pyenv.run | bash
 
 SHELL ["/bin/bash", "-c"]
@@ -19,10 +18,13 @@ RUN eval "$(pyenv init --path)"; \
     pyenv install 3.11.9; \
     pyenv global 3.11.9
 
-ENV PATH="/root/.pyenv/shims:/root/.pyenv/bin:$PATH"
+FROM mageai/mageai:latest
+
+ENV PYENV_ROOT="/root/.pyenv"
+ENV PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
+
+COPY --from=builder /root/.pyenv /root/.pyenv
 
 COPY default_repo/ /home/src/default_repo/
 
-RUN python3.11 -m pip install /home/src/default_repo/utils/*.whl 
-
-RUN rm /home/src/default_repo/utils/*.whl
+RUN python --version
