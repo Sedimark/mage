@@ -13,7 +13,7 @@ if 'test' not in globals():
 
 
 @data_loader
-def data_loader_ngsi_ld_file(*args, **kwargs):
+def data_loader_ngsi_ld_url(*args, **kwargs):
     """
         Template for loading data from a github repository
     """
