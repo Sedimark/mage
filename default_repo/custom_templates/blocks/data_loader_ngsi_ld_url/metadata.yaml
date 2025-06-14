@@ -1,9 +1,13 @@
 block_type: data_loader
 color: null
 configuration: null
-description: This block is used to load a CSV local file.
+description: This block is used to load NGSI-LD JSON (from a URL).
 language: python
+<<<<<<< .mine
+name: NGSI-LD json url loader
+=======
 name: CSV local file loader
+>>>>>>> .theirs
 pipeline: {}
 tags: []
 user:
