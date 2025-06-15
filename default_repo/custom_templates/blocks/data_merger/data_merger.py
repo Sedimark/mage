@@ -4,8 +4,7 @@ if 'data_exporter' not in globals():
     from mage_ai.data_preparation.decorators import data_exporter
 
 
-@data_exporter
-def data_merger(data, *args, **kwargs):
+def transform(df_initial, predicted_df_with_metadata, *args, **kwargs):
     """
     Merge predicted data into the initial DataFrame by matching column names.
     Add 'null' for missing columns in the predicted data.
