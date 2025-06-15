@@ -1,13 +1,11 @@
 from InteroperabilityEnabler.utils.extract_data import extract_columns
 
-if 'transformer' not in globals():
-    from mage_ai.data_preparation.decorators import transformer
-if 'test' not in globals():
-    from mage_ai.data_preparation.decorators import test
+if 'data_exporter' not in globals():
+    from mage_ai.data_preparation.decorators import data_exporter
 
 
-@transformer
-def transform(df, column_indices, *args, **kwargs):
+@data_exporter
+def data_extractor(df, *args, **kwargs):
     """
         Process specific columns and return them as a pandas DataFrame.
 
@@ -19,14 +17,9 @@ def transform(df, column_indices, *args, **kwargs):
         The column names corresponding to the indices as a separate output
         with the DataFrame (with the selected columns).
     """
+    # Select columns by index # if the input is in NGSI-LD format
+    column_indices = [2, 4]
+
     selected_df, selected_column_names = extract_columns(df, column_indices)
 
     return selected_df, selected_column_names
-
-
-@test
-def test_output(output, *args) -> None:
-    """
-    Template code for testing the output of the block.
-    """
-    assert output is not None, 'The output is undefined'
