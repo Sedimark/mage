@@ -17,10 +17,8 @@ def data_extractor(df, *args, **kwargs):
         The column names corresponding to the indices as a separate output
         with the DataFrame (with the selected columns).
     """
-    # Select columns by index
-
-    column_indices = [2, 4]
+    column_indices=[2, 4]
 
     selected_df, selected_column_names = extract_columns(df, column_indices)
 
-    return df, selected_df, selected_column_names
+    return selected_df, selected_column_names
