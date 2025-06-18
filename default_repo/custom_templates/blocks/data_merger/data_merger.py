@@ -1,12 +1,10 @@
 from InteroperabilityEnabler.utils.merge_data import merge_predicted_data
 
-if 'transformer' not in globals():
-    from mage_ai.data_preparation.decorators import transformer
-if 'test' not in globals():
-    from mage_ai.data_preparation.decorators import test
+if 'data_exporter' not in globals():
+    from mage_ai.data_preparation.decorators import data_exporter
 
 
-@transformer
+@data_exporter
 def transform(df_initial, predicted_df_with_metadata, *args, **kwargs):
     """
     Merge predicted data into the initial DataFrame by matching column names.
@@ -22,11 +20,3 @@ def transform(df_initial, predicted_df_with_metadata, *args, **kwargs):
     merged_df = merge_predicted_data(df_initial, predicted_df_with_metadata)
 
     return merged_df
-
-
-@test
-def test_output(output, *args) -> None:
-    """
-    Template code for testing the output of the block.
-    """
-    assert output is not None, 'The output is undefined'

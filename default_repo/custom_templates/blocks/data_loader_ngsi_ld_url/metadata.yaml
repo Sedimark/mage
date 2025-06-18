@@ -1,0 +1,10 @@
+block_type: data_loader
+color: null
+configuration: null
+description: This block is used to load NGSI-LD JSON (from a URL).
+language: python
+name: NGSI-LD json url loader
+pipeline: {}
+tags: []
+user:
+  username: Shahin

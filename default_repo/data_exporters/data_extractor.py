@@ -17,8 +17,7 @@ def data_extractor(df, *args, **kwargs):
         The column names corresponding to the indices as a separate output
         with the DataFrame (with the selected columns).
     """
-    # Select columns by index # if the input is in NGSI-LD format
-    column_indices = [2, 4]
+    column_indices=[2, 4]
 
     selected_df, selected_column_names = extract_columns(df, column_indices)
 
