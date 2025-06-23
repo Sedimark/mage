@@ -69,17 +69,16 @@ def transform_custom(data, *args, **kwargs):
         data (pd.DataFrame): values-only DataFrame from the upstream block.
     """
 
-    # data = data.iloc[:24]
+    #data = data.iloc[:24]
     df, selected_df, selected_column_names = data
 
     tmp_data = selected_df.iloc[:24]
 
     # load the model
-    model = mlflow.pytorch.load_model(
-        "models:/Trained_Model/latest")  # TODO: name is registered name and should be replaced
+    model = mlflow.pytorch.load_model("models:/Trained_Model/latest")  # TODO: name is registered name and should be replaced
     predictions = inference(
         model=model,
-        df=tmp_data
+        df = tmp_data
     )
     return predictions, df, selected_df, selected_column_names
 
