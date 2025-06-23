@@ -5,18 +5,19 @@ if 'data_exporter' not in globals():
 
 
 @data_exporter
-def transform(df_initial, predicted_df_with_metadata, *args, **kwargs):
+def data_merger(data, *args, **kwargs):
     """
     Merge predicted data into the initial DataFrame by matching column names.
     Add 'null' for missing columns in the predicted data.
 
     Args:
-        df_initial: DataFrame containing the original selected columns.
-        predicted_df_with_metadata: DataFrame containing the predicted data with metadata (column names).
+        data: Containing the initial data (input data) and the predicted data.
 
     Returns:
         A merged Pandas DataFrame with 'null' for missing columns.
     """
-    merged_df = merge_predicted_data(df_initial, predicted_df_with_metadata)
+    df, predicted_df = data
+
+    merged_df = merge_predicted_data(df, predicted_df)
 
     return merged_df
