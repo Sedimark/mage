@@ -27,7 +27,7 @@ if "test" not in globals():
 # os.environ['MLFLOW_TRACKING_INSECURE_TLS'] = 'true'
 
 # Set MLflow tracking URI
-mlflow.set_tracking_uri("http://172.20.132.105:5000") # it is local ip and should be replaced by https://mlflow.sedimark.work/ 
+mlflow.set_tracking_uri("http://host.docker.internal:5000/") # it is local ip and should be replaced by https://mlflow.sedimark.work/ 
 
 # Create experiment
 experiment_name = "CrossFormer"
@@ -56,11 +56,12 @@ def train_crossformer(data, *args, **kwargs):
     # load cfg & consider apply new changes to cfg
     # TODO: We should connect with UI to adjust the cfg
     cfg = cfg_base
+    df, selected_df, selected_column_names = data
     
     # Setup the training configuration
     model, dm, trainer = setup_fit(
         cfg=cfg,
-        df=data,
+        df=selected_df,
         callbacks=None,
     )  # TODO: where to load the cfg?
 
@@ -89,7 +90,7 @@ def train_crossformer(data, *args, **kwargs):
     
     test_result = trainer.test(model, dm, ckpt_path="best")
 
-    return test_result, registered_model_name
+    return test_result #, registered_model_name
 
 
 @test
