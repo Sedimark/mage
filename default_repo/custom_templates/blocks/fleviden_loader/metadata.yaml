@@ -1,0 +1,10 @@
+block_type: data_loader
+color: null
+configuration: null
+description: This is a fleviden loader
+language: python
+name: Fleviden Loader
+pipeline: {}
+tags: []
+user:
+  username: admin

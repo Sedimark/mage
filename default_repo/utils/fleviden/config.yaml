@@ -1,0 +1,20 @@
+# Federated training config
+ROUNDS: 10
+MIN_CLIENTS: 3
+
+# Local training config
+EPOCHS: 2
+BATCH_SIZE: 128
+
+# Model path
+MODEL_PATH: "./model/model.keras"
+
+# Dataset configuration
+DATA_PATH: "./data/iot.csv"
+FEATURES: ['id.orig_p', 'id.resp_p', 'proto', 'service', 'duration', 'orig_bytes', 'resp_bytes', 'orig_pkts', 'resp_pkts']
+TARGETS: ['Label']
+PD_ARGS: {"header": 0, "index_col": 0}
+
+# Fleviden debug mode
+DEBUG: False
+VERBOSITY: 0

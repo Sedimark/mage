@@ -1,0 +1,10 @@
+block_type: data_loader
+color: null
+configuration: null
+description: 'This is the initializer for fleviden '
+language: python
+name: Fleviden Initializer
+pipeline: {}
+tags: []
+user:
+  username: admin

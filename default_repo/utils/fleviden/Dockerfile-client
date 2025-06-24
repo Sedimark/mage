@@ -1,0 +1,14 @@
+FROM python:3.11-slim AS base
+RUN apt-get update && apt-get install make
+RUN pip install wait-for-it
+
+FROM base AS fleviden
+COPY dist dist
+COPY config.yaml config.yaml
+COPY Makefile Makefile
+RUN pip install dist/fleviden-0.4.0-cp311-cp311-linux_x86_64.whl["tensorflow"]
+
+ENV TF_CPP_MIN_LOG_LEVEL=3
+
+COPY scripts/client.py main.py
+CMD ["python", "main.py"]

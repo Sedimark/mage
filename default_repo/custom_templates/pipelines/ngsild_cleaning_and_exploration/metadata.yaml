@@ -1,0 +1,143 @@
+description: "{\n \"type\": \"data_models\",\n\"description\": \"This pipeline is\
+  \ used for basic data exploration for the data inside the ngsild broker and also\
+  \  exports it to a csv file\"\n}"
+name: Ngsild cleaning and exploration
+pipeline:
+  blocks:
+  - all_upstream_blocks_executed: true
+    callback_blocks: []
+    color: null
+    conditional_blocks: []
+    configuration:
+      end_time: '{"type": "date", "description": "The stop date of the time interval.",
+        "format": "YYYY-MM-DDThh:mm:ssZ"}'
+      entity_id: '{"type": "drop_down", "description": "This is the ID of the entity
+        that is stored in the NGSI-LD Broker", "values": ["urn:ngsi-ld:Sedimark:CrowdFlowObserved:100016667"]}'
+      start_time: '{"type": "date", "description": "The start date of the time interval.",
+        "format": YYYY-MM-DDThh:mm:ssZ"}'
+    downstream_blocks:
+    - ngsild_temporal_data_profiler
+    executor_config: null
+    executor_type: local_python
+    has_callback: false
+    language: python
+    metadata: {}
+    name: ngsild_temporal_data_retrieval_1
+    pipelines:
+    - added_at: 1750688319.650456
+      pipeline:
+        created_at: '2025-06-16 13:34:05.133412+00:00'
+        description: Easily consume data from the NGSI-LD broker, get a quick overview,
+          and export it.
+        name: ngsi_ld_data_ingestion_and_basic_exploration
+        repo_path: default_repo
+        tags:
+        - data_preprocessing
+        type: python
+        uuid: ngsi_ld_data_ingestion_and_basic_exploration
+      updated_at: 1750688319.650632
+    retry_config: null
+    status: updated
+    tags: []
+    timeout: null
+    type: data_loader
+    upstream_blocks: []
+    uuid: ngsild_temporal_data_retrieval_1
+  - all_upstream_blocks_executed: false
+    callback_blocks: []
+    color: null
+    conditional_blocks: []
+    configuration: {}
+    downstream_blocks:
+    - dataframe_to_csv_1
+    executor_config: null
+    executor_type: local_python
+    has_callback: false
+    language: python
+    metadata: {}
+    name: ngsild_temporal_data_profiler
+    pipelines:
+    - added_at: 1750688319.651416
+      pipeline:
+        created_at: '2025-06-16 13:34:05.133412+00:00'
+        description: Easily consume data from the NGSI-LD broker, get a quick overview,
+          and export it.
+        name: ngsi_ld_data_ingestion_and_basic_exploration
+        repo_path: default_repo
+        tags:
+        - data_preprocessing
+        type: python
+        uuid: ngsi_ld_data_ingestion_and_basic_exploration
+      updated_at: 1750688319.651524
+    retry_config: null
+    status: executed
+    tags: []
+    timeout: null
+    type: transformer
+    upstream_blocks:
+    - ngsild_temporal_data_retrieval_1
+    uuid: ngsild_temporal_data_profiler
+  - all_upstream_blocks_executed: false
+    callback_blocks: []
+    color: null
+    conditional_blocks: []
+    configuration:
+      output_path: '{"type": "string", "description": "This is the output path for
+        the csv"}'
+    downstream_blocks: []
+    executor_config: null
+    executor_type: local_python
+    has_callback: false
+    language: python
+    metadata: {}
+    name: dataframe_to_csv_1
+    pipelines:
+    - added_at: 1750688319.652495
+      pipeline:
+        created_at: '2025-06-16 13:34:05.133412+00:00'
+        description: Easily consume data from the NGSI-LD broker, get a quick overview,
+          and export it.
+        name: ngsi_ld_data_ingestion_and_basic_exploration
+        repo_path: default_repo
+        tags:
+        - data_preprocessing
+        type: python
+        uuid: ngsi_ld_data_ingestion_and_basic_exploration
+      updated_at: 1750688319.652549
+    retry_config: null
+    status: executed
+    tags: []
+    timeout: null
+    type: data_exporter
+    upstream_blocks:
+    - ngsild_temporal_data_profiler
+    uuid: dataframe_to_csv_1
+  cache_block_output_in_memory: false
+  callbacks: []
+  concurrency_config: {}
+  conditionals: []
+  created_at: '2025-06-16 13:34:05.133412+00:00'
+  data_integration: null
+  description: Easily consume data from the NGSI-LD broker, get a quick overview,
+    and export it.
+  executor_config: {}
+  executor_count: 1
+  executor_type: null
+  extensions: {}
+  name: ngsi_ld_data_ingestion_and_basic_exploration
+  notification_config: {}
+  remote_variables_dir: null
+  retry_config: {}
+  run_pipeline_in_one_process: false
+  settings:
+    triggers: null
+  spark_config: {}
+  tags:
+  - data_preprocessing
+  type: python
+  uuid: ngsild_cleaning_and_exploration
+  variables_dir: /home/src/mage_data/default_repo
+  widgets: []
+tags: []
+user:
+  username: admin

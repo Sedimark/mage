@@ -1,0 +1,41 @@
+# Global configuration
+DEBUG: true
+VERBOSITY: 2
+ROUNDS: 10
+
+# Client specific configuration
+client:
+  ID: "client1"
+  SERVER: "localhost:8080"
+  EPOCHS: 5
+  BATCH_SIZE: 32
+  MODEL_PATH: "/path/to/client/model.h5"
+  DATA_PATH: "/path/to/client/data.csv"
+  FEATURES:
+    - client_feature1
+    - client_feature2
+  TARGETS:
+    - client_target1
+  PD_ARGS:
+    sep: ','
+    header: 0
+    index_col: 0
+
+# Server specific configuration
+server:
+  ID: "server1"
+  CLIENTS:
+    - "client1"
+    - "client2"
+  MIN_CLIENTS: 2
+  MODEL_PATH: "/path/to/server/global_model.h5"
+  DATA_PATH: "/path/to/server/test_data.csv"
+  FEATURES:
+    - server_feature1
+    - server_feature2
+  TARGETS:
+    - server_target1
+  PD_ARGS:
+    sep: ','
+    header: 0
+    index_col: 0

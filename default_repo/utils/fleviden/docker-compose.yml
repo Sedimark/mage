@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: server
+    build:
+      context: ./
+      dockerfile: Dockerfile-server
+    volumes:
+      - ./model:/model
+      - ./data/server:/data
+    environment:
+      ID: server
+    expose:
+      - 80
+    networks:
+      - fleviden
+
+  client-one:
+    container_name: client-one
+    build:
+      context: ./
+      dockerfile: Dockerfile-client
+    volumes:
+      - ./model:/model
+      - ./data/client_one:/data
+    environment:
+      ID: client-one
+      ID_NUM: 1
+      SERVER: server
+    expose:
+      - 80
+    networks:
+      - fleviden
+
+  client-two:
+    container_name: client-two
+    build:
+      context: ./
+      dockerfile: Dockerfile-client
+    volumes:
+      - ./model:/model
+      - ./data/client_two:/data
+    environment:
+        ID: client-two
+        ID_NUM: 2
+        SERVER: server
+    expose:
+      - 80
+    networks:
+      - fleviden
+
+  client-three:
+    container_name: client-three
+    build:
+      context: ./
+      dockerfile: Dockerfile-client
+    volumes:
+      - ./model:/model
+      - ./data/client_three:/data
+    environment:
+        ID: client-three
+        ID_NUM: 3
+        SERVER: server
+    expose:
+      - 80
+    networks:
+      - fleviden
+
+networks:
+  fleviden:
