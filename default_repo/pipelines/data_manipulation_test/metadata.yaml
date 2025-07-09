@@ -1,20 +1,23 @@
 blocks:
 - all_upstream_blocks_executed: true
   color: null
-  configuration: {}
+  configuration:
+    file_path: /home/src/default_repo/data_loaders/dataframe_forwarder.py
+    file_source:
+      path: data_loaders/dataframe_forwarder.py
   downstream_blocks:
-  - trainer
+  - dataframe_manipulation_transformer
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: local_loader
+  name: dataframe_forwarder
   retry_config: null
-  status: executed
+  status: not_executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: local_loader
+  uuid: dataframe_forwarder
 - all_upstream_blocks_executed: false
   color: null
   configuration: {}
@@ -23,26 +26,26 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: Trainer
+  name: dataframe_manipulation_transformer
   retry_config: null
-  status: failed
+  status: updated
   timeout: null
-  type: custom
+  type: transformer
   upstream_blocks:
-  - local_loader
-  uuid: trainer
+  - dataframe_forwarder
+  uuid: dataframe_manipulation_transformer
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2025-05-20 12:43:40.735008+00:00'
+created_at: '2025-07-09 09:17:29.304576+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: tmp_crossformer_training
+name: data_manipulation_test
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -50,10 +53,9 @@ run_pipeline_in_one_process: false
 settings:
   triggers: null
 spark_config: {}
-tags: []
+tags:
+- data_manipulation
 type: python
-uuid: tmp_crossformer_training
-variables:
-  filepath: default_repo/broker_values.csv
+uuid: data_manipulation_test
 variables_dir: /home/src/mage_data/default_repo
 widgets: []
