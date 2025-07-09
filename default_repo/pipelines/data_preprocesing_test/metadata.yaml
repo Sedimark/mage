@@ -3,40 +3,21 @@ blocks:
   color: null
   configuration:
     file_source:
-      path: data_loaders/broker_loader.py
+      path: data_loaders/dataframe_forwarder.py
   downstream_blocks:
-  - select_multi_columns
+  - dataframe_forwarder_transformer
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: broker_loader
+  name: dataframe_forwarder
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: broker_loader
-- all_upstream_blocks_executed: true
-  color: null
-  configuration:
-    file_source:
-      path: transformers/select_multi_columns.py
-  downstream_blocks:
-  - trainer
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: select_multi_columns
-  retry_config: null
-  status: executed
-  timeout: null
-  type: transformer
-  upstream_blocks:
-  - broker_loader
-  uuid: select_multi_columns
-- all_upstream_blocks_executed: true
+  uuid: dataframe_forwarder
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks: []
@@ -44,26 +25,26 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: trainer
+  name: dataframe_forwarder_transformer
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
-  type: data_exporter
+  type: transformer
   upstream_blocks:
-  - select_multi_columns
-  uuid: trainer
+  - dataframe_forwarder
+  uuid: dataframe_forwarder_transformer
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2024-09-23 19:31:56.239782+00:00'
+created_at: '2025-07-08 13:47:55.060691+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: surrey
+name: data_preprocessing_test
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -71,8 +52,9 @@ run_pipeline_in_one_process: false
 settings:
   triggers: null
 spark_config: {}
-tags: []
+tags:
+- data_preprocessing
 type: python
-uuid: surrey
+uuid: data_preprocessing_test
 variables_dir: /home/src/mage_data/default_repo
 widgets: []
