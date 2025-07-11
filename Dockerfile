@@ -15,8 +15,7 @@ SHELL ["/bin/bash", "-c"]
 
 RUN eval "$(pyenv init --path)"; \
     eval "$(pyenv init -)"; \
-    pyenv install 3.11.9; \
-    pyenv global 3.11.9
+    pyenv install 3.11.9; 
 
 FROM mageai/mageai:latest
 
@@ -27,4 +26,4 @@ COPY --from=builder /root/.pyenv /root/.pyenv
 
 COPY default_repo/ /home/src/default_repo/
 
-RUN python --version
+RUN python3.11 -m pip install default_repo/libs/fleviden-0.4.0-py3-none-any.whl
