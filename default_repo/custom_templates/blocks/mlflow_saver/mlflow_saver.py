@@ -23,22 +23,6 @@ def checker(item: dict, item_type: str, key_type: str, value_type: str) -> None:
         raise TypeError(f"Not all values in the dictionary are of type {value_type}")
 
 
-def load_env():
-    config_path = f"{get_repo_path()}/io_config.yaml"
-    with open(config_path, "r") as f:
-        config = yaml.load(f, Loader=yaml.FullLoader)
-
-    os.environ['MLFLOW_TRACKING_USERNAME'] = config["MLFLOW"]["MLFLOW_TRACKING_USERNAME"].strip().replace("\n", "")
-    os.environ['MLFLOW_TRACKING_PASSWORD'] = config["MLFLOW"]["MLFLOW_TRACKING_PASSWORD"].strip().replace("\n", "")
-    os.environ['AWS_ACCESS_KEY_ID'] = config["MLFLOW"]["AWS_ACCESS_KEY_ID"].strip().replace("\n", "")
-    os.environ['AWS_SECRET_ACCESS_KEY'] = config["MLFLOW"]["AWS_SECRET_ACCESS_KEY"].strip().replace("\n", "")
-    os.environ['MLFLOW_S3_ENDPOINT_URL'] = config["MLFLOW"]["MLFLOW_S3_ENDPOINT_URL"].strip().replace("\n", "")
-    os.environ['MLFLOW_EXPERIMENT'] = config["MLFLOW"]["MFLOW_EXPERIMENT_NAME"]
-    os.environ['MLFLOW_TRACKING_URI'] = config["MLFLOW"]["MLFLOW_TRACKING_URI"]
-    os.environ['MLFLOW_TRACKING_INSECURE_TLS'] = "true"
-    os.environ['MLFLOW_HTTP_REQUEST_TIMEOUT'] = "1000"
-
-
 def find_and_import_class(class_name: str):
     for path in sys.path:
         if not os.path.isdir(path):
@@ -63,6 +47,13 @@ def find_and_import_class(class_name: str):
     raise ImportError(f"Class '{class_name}' not found in the Python path.")
 
 
+def ensure_env():
+    required_mlflow_envs = ["MLFLOW_TRACKING_URI", "MLFLOW_S3_ENDPOINT_URL", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "MLFLOW_TRACKING_INSECURE_TLS", "MLFLOW_FLASK_SERVER_SECRET_KEY", "MLFLOW_TRACKING_USERNAME", "MLFLOW_TRACKING_PASSWORD", "MLFLOW_TRACKING_URI"]
+
+    for env in required_mlflow_envs:
+        if os.getenv(env) is None:
+            raise ValueError(f"Required environment variable {env} not present.")
+
 @data_exporter
 def export_data(data, *args, **kwargs):
     """
@@ -79,8 +70,8 @@ def export_data(data, *args, **kwargs):
     if not isinstance(data, dict):
         raise TypeError("Data is not of type dict!")
 
-    required_keys = ["model", "model_name", "model_type", "images", "parameters", "metrics"]
-    optional_keys = ["pytorch_model_class", "pytorch_model_parameters"]
+    required_keys = ["model", "model_name", "model_type", "parameters", "metrics"]
+    pytorch_keys = ["pytorch_model_class", "pytorch_model_parameters"]
     for key in required_keys:
         if key not in data.keys():
             raise KeyError(f"Required key {key} not present in data!") 
@@ -88,21 +79,25 @@ def export_data(data, *args, **kwargs):
     checker(data["model"], "dict", "str", "any")
     checker(data["model_name"], "dict", "str", "str")
     checker(data["model_type"], "dict", "str", "str")
-    checker(data["images"], "dict", "str", "str")
     checker(data["parameters"], "dict", "str", "any")
     checker(data["metrics"], "dict", "str", "any")
+
+    if data.get("images") is None:
+        data["images"] = {}
+    else:
+        checker(data["images"], "dict", "str", "str")
 
     if data["model_type"] not in ["sklearn", "pytorch", "onnx"]:
         raise ValueError("model_type must be: sklearn | pytroch | onnx")
     
     if data["model_type"] == "pytorch":
-        for key in optional_keys:
+        for key in pytorch_keys:
             if key not in data.keys():
                 raise KeyError(f"Optional key {key} not present in data!") 
 
-    model_class = find_and_import_class(data["pytorch_model_class"])
+        model_class = find_and_import_class(data["pytorch_model_class"])
 
-    load_env()
+    ensure_env()
 
     mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
 
@@ -120,17 +115,17 @@ def export_data(data, *args, **kwargs):
             mlflow.log_image(buffer, f"images/{image_name}")
         
         if data["model_type"] == "sklearn":
-            mlflow.sklearn.log_model(data["model"], "model")
+            mlflow.sklearn.log_model(data["model"], name="model")
         elif data["model_type"] == "onnx":
             import onnx
             onnx_model = onnx.load_model_from_string(data["model"])
-            mlflow.onnx.log_model(onnx_model, "model")
+            mlflow.onnx.log_model(onnx_model, name="model")
         elif data["model_type"] == "pytorch":
             import torch
             model = model_class(*data["pytorch_model_parameters"])
             state_dict = {k: torch.tensor(v) for k, v in data["model"].items()}
             model.load_state_dict(state_dict)
-            mlflow.pytorch.log_model(model, "model")
+            mlflow.pytorch.log_model(model, name="model")
 
     artifact_uri = mlflow.get_artifact_uri(artifact_path)
 
