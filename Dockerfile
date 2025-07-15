@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libbz2-dev libreadline-dev libsqlite3-dev wget \
     llvm libncursesw5-dev xz-utils tk-dev \
     libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
- && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 ENV PYENV_ROOT="/root/.pyenv"
 ENV PATH="$PYENV_ROOT/bin:$PATH"
@@ -15,10 +15,8 @@ SHELL ["/bin/bash", "-c"]
 
 RUN eval "$(pyenv init --path)"; \
     eval "$(pyenv init -)"; \
-    pyenv install 3.11.9; \
-    pyenv global 3.11; \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
-
+    pyenv install 3.11;
+    
 FROM mageai/mageai:latest
 
 ENV PYENV_ROOT="/root/.pyenv"
@@ -28,4 +26,6 @@ COPY --from=builder /root/.pyenv /root/.pyenv
 
 COPY default_repo/ /home/src/default_repo/
 
-RUN python3.11 -m pip install default_repo/libs/fleviden-0.4.0-py3-none-any.whl && pyenv global system
+RUN pyenv local 3.11 && pyenv exec python3.11 -m pip install default_repo/libs/fleviden-0.4.0-py3-none-any.whl && pyenv local system && pyenv global system
+
+RUN python --version
