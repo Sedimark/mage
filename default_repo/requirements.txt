@@ -1,6 +1,8 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 mlflow
 deepdiff
+minio
+boto3
 dask[dataframe]
 crossformer
 InteroperabilityEnabler

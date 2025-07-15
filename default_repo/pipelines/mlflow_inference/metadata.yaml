@@ -1,0 +1,71 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: teal
+  configuration:
+    model_name:
+      type: string
+      description: "The name of the model stored in MLFlow that will be used for inference."
+      regex: "^[a-zA-Z0-9_-]*$"
+    model_version:
+      type: string
+      description: "The version of the model to be used in the inference process."
+      regex: "^[1-9]+[0-9]*$"
+  downstream_blocks:
+  - export_predictions
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: mlflow_inference_block
+  retry_config: null
+  status: updated
+  timeout: null
+  type: custom
+  upstream_blocks: []
+  uuid: mlflow_inference_block
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+      prediction_name:
+        type: string
+        description: "The name of the prediction that will be stored for later inspection."
+        regex: "^[a-zA-Z0-9_-]*$"
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: export_predictions
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - mlflow_inference_block
+  uuid: export_predictions
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2025-07-15 06:14:51.814596+00:00'
+data_integration: null
+description: Pipeline used to load a specified model version from MLFlow and run the
+  inference process on the specified data.
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: mlflow_inference
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags:
+- predict
+type: python
+uuid: mlflow_inference
+variables_dir: /home/src/mage_data/default_repo
+widgets: []
