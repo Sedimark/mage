@@ -1,5 +1,7 @@
 mlflow
 deepdiff
+minio
+boto3
 dask[dataframe]
 crossformer
 InteroperabilityEnabler
