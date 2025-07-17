@@ -20,6 +20,10 @@ blocks:
       description: The start date of the time interval.
       format: YYYY-MM-DDThh:mm:ssZ
       type: date
+    get_data_from_broker:
+      default: true
+      description: If true, the data will be fetched from the NGSI-LD Broker.
+      type: boolean
   downstream_blocks:
   - interoperability_enabler_data_connector
   executor_config: null
@@ -28,12 +32,12 @@ blocks:
   language: python
   name: ngsi_ld_temporal_loader
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: ngsi_ld_temporal_loader
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks:
@@ -44,13 +48,13 @@ blocks:
   language: python
   name: interoperability_enabler_data_connector
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: transformer
   upstream_blocks:
   - ngsi_ld_temporal_loader
   uuid: interoperability_enabler_data_connector
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     data_preprocessing_pipeline_trigger:
@@ -72,9 +76,14 @@ blocks:
   upstream_blocks:
   - interoperability_enabler_data_connector
   uuid: data_preprocessing_trigger
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
-  configuration: {}
+  configuration:
+    data_manipulation_pipeline_trigger:
+      default: data_manipulation_test
+      description: Trigger for the data manipulation pipeline
+      tag: data_manipulation
+      type: trigger
   downstream_blocks:
   - interoperability_enabler_data_exporter
   executor_config: null
@@ -83,13 +92,13 @@ blocks:
   language: python
   name: data_manipulation_trigger
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: transformer
   upstream_blocks:
   - data_preprocessing_trigger
   uuid: data_manipulation_trigger
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks: []
