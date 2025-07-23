@@ -11,7 +11,8 @@ def data_merger(data, *args, **kwargs):
     Add 'null' for missing columns in the predicted data.
 
     Args:
-        data: Containing the initial data (input data) and the predicted data.
+        df_initial: DataFrame containing the original selected columns.
+        predicted_df_with_metadata: DataFrame containing the predicted data with metadata (column names).
 
     Returns:
         A merged Pandas DataFrame with 'null' for missing columns.

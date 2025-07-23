@@ -5,20 +5,20 @@ if 'data_exporter' not in globals():
 
 
 @data_exporter
-def metadata_restorer(data, *args, **kwargs):
+def metadata_restorer(predicted_df, selected_column_names, *args, **kwargs):
     """
     Add metadata (column names) back to the predicted DataFrame (from an AI model).
 
     Args:
-        data: Containing the predictions, the input data, the selected data and the columns names
+        predicted_df: DataFrame containing the predictions without metadata.
+        column_names: List of column names corresponding to the predictions.
+
     Returns:
         Pandas DataFrame with metadata (column names).
     """
-    predictions, df, selected_df, selected_column_names = data
-
     predicted_df = add_metadata_to_predictions_from_dataframe(
-        predictions, selected_column_names
+        predicted_df, selected_column_names
     )
 
-    return df, predicted_df
+    return predicted_df
 

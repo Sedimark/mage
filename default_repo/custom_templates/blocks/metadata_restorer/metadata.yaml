@@ -1,4 +1,4 @@
-block_type: transformer
+block_type: data_exporter
 color: null
 configuration: null
 description: This block is used to restore metadata (column names) back to the predicted DataFrame (from an AI model).

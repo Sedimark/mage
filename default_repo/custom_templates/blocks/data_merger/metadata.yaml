@@ -1,4 +1,4 @@
-block_type: transformer
+block_type: data_exporter
 color: null
 configuration: null
 description: This block is used to merge two pandas DataFrames by matching column names.

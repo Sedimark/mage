@@ -1,4 +1,4 @@
-block_type: transformer
+block_type: data_exporter
 color: null
 configuration: null
 description: This block is used to extract specific columns from a pandas DataFrame and return them as a new pandas DataFrame.
