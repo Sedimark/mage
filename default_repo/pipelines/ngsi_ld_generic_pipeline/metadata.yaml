@@ -1,0 +1,142 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    attrs:
+      default: https://vocab.egm.io/flow
+      description: Filtering attributes to filter timeseries for the selected entity
+      type: string
+    end_time:
+      default: null
+      description: The end date of the time interval.
+      format: YYYY-MM-DDThh:mm:ssZ
+      type: date
+    entity_id:
+      default: urn:ngsi-ld:Sedimark:CrowdFlowObserved:100016667
+      description: This is the ID of the entity that is stored in the NGSI-LD Broker
+      type: string
+    start_time:
+      default: '2022-11-16T07:00:00Z'
+      description: The start date of the time interval.
+      format: YYYY-MM-DDThh:mm:ssZ
+      type: date
+    get_data_from_broker:
+      default: true
+      description: If true, the data will be fetched from the NGSI-LD Broker.
+      type: boolean
+  downstream_blocks:
+  - interoperability_enabler_data_connector
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: ngsi_ld_temporal_loader
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: ngsi_ld_temporal_loader
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - data_preprocessing_trigger
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: interoperability_enabler_data_connector
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - ngsi_ld_temporal_loader
+  uuid: interoperability_enabler_data_connector
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    data_preprocessing_pipeline_trigger:
+      default: data_preprocessing_test
+      description: Trigger for the data preprocessing pipeline
+      tag: data_preprocessing
+      type: trigger
+  downstream_blocks:
+  - data_manipulation_trigger
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: data_preprocessing_trigger
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - interoperability_enabler_data_connector
+  uuid: data_preprocessing_trigger
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    data_manipulation_pipeline_trigger:
+      default: data_manipulation_test
+      description: Trigger for the data manipulation pipeline
+      tag: data_manipulation
+      type: trigger
+  downstream_blocks:
+  - interoperability_enabler_data_exporter
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: data_manipulation_trigger
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - data_preprocessing_trigger
+  uuid: data_manipulation_trigger
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: interoperability_enabler_data_exporter
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - data_manipulation_trigger
+  uuid: interoperability_enabler_data_exporter
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2025-07-08 11:16:54.325414+00:00'
+data_integration: null
+description: Data importer and standardization using InteroperabilityEnabler and forward
+  to Data Preprocessing and Data Manipulation pipelines
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: ngsi_ld_generic_pipeline
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags:
+- generic
+type: python
+uuid: ngsi_ld_generic_pipeline
+variables_dir: /home/src/mage_data/default_repo
+widgets: []
