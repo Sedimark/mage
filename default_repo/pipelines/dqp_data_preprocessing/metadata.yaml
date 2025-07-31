@@ -6,17 +6,17 @@ blocks:
       default: null
       description: The path to the CSV file to load. If not provided, the CSV file
         will not be loaded.
-      type: text
+      type: string
     join_csv_strategy:
       default: concat
       description: The strategy to use for joining the CSV data with the existing
         DataFrame.
       type: drop_down
       values:
-      - concat
-      - merge
-      - join
-      - replace
+        - concat
+        - merge
+        - join
+        - replace
     load_csv:
       default: false
       description: Whether to load the CSV file or not. Default is False.
@@ -42,10 +42,10 @@ blocks:
       description: The method used for missing value imputation by the DQP module.
       type: drop_down
       values:
-      - SimpleImputer
-      - KNNImputer
-      - LogisticRegression
-      - Interpolation
+        - SimpleImputer
+        - KNNImputer
+        - LogisticRegression
+        - Interpolation
   downstream_blocks:
   - data_type_handler
   executor_config: null
@@ -85,18 +85,18 @@ blocks:
     columns:
       description: The list of columns that will be used for RecordLinkage, if empty
         all columns will be used. e.g. ["column1", "column2"]
-      type: text
+      type: array
     index_column:
       description: The column that will be used as index for RecordLinkage.
-      type: text
+      type: string
     indexing_method:
       default: Full
       description: The method used for deduplication by the DQP module.
       type: drop_down
       values:
-      - Full
-      - Block
-      - Neighbourhood
+        - Full
+        - Block
+        - Neighbourhood
     match_threshold:
       default: 2
       description: How many matched columns are required to determine if the rows
@@ -107,8 +107,8 @@ blocks:
       description: The method used for deduplication by the DQP module.
       type: drop_down
       values:
-      - ActiveDedup
-      - RecordLinkage
+        - ActiveDedup
+        - RecordLinkage
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
