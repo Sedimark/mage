@@ -1,0 +1,150 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    csv_file:
+      default: null
+      description: The path to the CSV file to load. If not provided, the CSV file
+        will not be loaded.
+      type: string
+    join_csv_strategy:
+      default: concat
+      description: The strategy to use for joining the CSV data with the existing
+        DataFrame.
+      type: drop_down
+      values:
+        - concat
+        - merge
+        - join
+        - replace
+    load_csv:
+      default: false
+      description: Whether to load the CSV file or not. Default is False.
+      type: boolean
+  downstream_blocks:
+  - dqp_missing_values
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: csv_loader_and_merger
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: csv_loader_and_merger
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    method:
+      default: KNNImputer
+      description: The method used for missing value imputation by the DQP module.
+      type: drop_down
+      values:
+        - SimpleImputer
+        - KNNImputer
+        - LogisticRegression
+        - Interpolation
+  downstream_blocks:
+  - data_type_handler
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: dqp_missing_values
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - csv_loader_and_merger
+  uuid: dqp_missing_values
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    file_source:
+      path: transformers/data_type_handler.py
+  downstream_blocks:
+  - dqp_deduplication
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: data_type_handler
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - dqp_missing_values
+  uuid: data_type_handler
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    columns:
+      description: The list of columns that will be used for RecordLinkage, if empty
+        all columns will be used. e.g. ["column1", "column2"]
+      type: array
+    index_column:
+      description: The column that will be used as index for RecordLinkage.
+      type: string
+    indexing_method:
+      default: Full
+      description: The method used for deduplication by the DQP module.
+      type: drop_down
+      values:
+        - Full
+        - Block
+        - Neighbourhood
+    match_threshold:
+      default: 2
+      description: How many matched columns are required to determine if the rows
+        are matches.
+      type: number
+    method:
+      default: ActiveDedup
+      description: The method used for deduplication by the DQP module.
+      type: drop_down
+      values:
+        - ActiveDedup
+        - RecordLinkage
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: dqp_deduplication
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - data_type_handler
+  uuid: dqp_deduplication
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2025-07-30 13:59:27.337253+00:00'
+data_integration: null
+description: This pipeline uses the DQP module in order to do data preprocessing on
+  a SEDIMARK dataframe.
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: dqp_data_preprocessing
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags:
+- data_preprocessing
+type: python
+uuid: dqp_data_preprocessing
+variables_dir: /home/src/mage_data/default_repo
+widgets: []

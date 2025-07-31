@@ -7,17 +7,17 @@ blocks:
       description: Whether to load the CSV file or not. Default is False.
       default: false
     csv_file:
-      type: text
+      type: string
       description: The path to the CSV file to load. If not provided, the CSV file will not be loaded.
       default: null
     join_csv_strategy:
       type: drop_down
       description: The strategy to use for joining the CSV data with the existing DataFrame.
       values:
-      - concat
-      - merge
-      - join
-      - replace
+        - concat
+        - merge
+        - join
+        - replace
       default: concat
   downstream_blocks:
   - missing_values_data_handler
@@ -39,16 +39,16 @@ blocks:
       type: drop_down
       description: The strategy to handle missing values.
       values:
-      - default_imputation
-      - drop_rows
-      - drop_cols
-      - impute_mean
-      - impute_median
-      - impute_mode
-      - impute_constant
+        - default_imputation
+        - drop_rows
+        - drop_cols
+        - impute_mean
+        - impute_median
+        - impute_mode
+        - impute_constant
       default: default_imputation
     columns:
-      type: text
+      type: array
       description: 'The list columns to apply the strategy on. If empty, all columns will be considered. e.g. ["column1", "column2"]'
     impute_value:
       type: number
@@ -76,10 +76,10 @@ blocks:
   color: null
   configuration:
       type_conversions:
-        type: text
+        type: dictionary
         description: 'A dictionary of type conversions to apply to the columns. e.g. {"column1": "int", "column2": "float"}'
       date_time_format:
-        type: text
+        type: string
         description: 'The date time format to use for parsing date time columns. e.g. %Y-%m-%dT%H:%M:%S'
   downstream_blocks:
   - duplicates_handler
@@ -99,15 +99,15 @@ blocks:
   color: null
   configuration:
     subset:
-      type: text
+      type: array
       description: 'The list of columns to consider for identifying duplicates. If empty, all columns will be considered. e.g. ["column1", "column2"]'
     keep:
       type: drop_down
       description: 'The strategy to use for keeping duplicates. Options are `first`, `last`, or False. If set to False, all duplicates will be removed.'
       values:
-      - 'first'
-      - 'last'
-      - 'false'
+        - 'first'
+        - 'last'
+        - 'false'
       default: first
   downstream_blocks:
   - columns_name_handler
@@ -127,10 +127,10 @@ blocks:
   color: null
   configuration:
     rename_map:
-      type: text
+      type: dictionary
       description: 'A dictionary mapping old column names to new column names. e.g. {"old_name1": "new_name1", "old_name2": "new_name2"}'
     drop_columns:
-      type: text
+      type: array
       description: 'A list of columns to drop. If empty, no columns will be dropped. e.g. ["column1", "column2"]'
   downstream_blocks: []
   executor_config: null

@@ -3,36 +3,21 @@ blocks:
   color: null
   configuration:
     file_source:
-<<<<<<<< HEAD:default_repo/pipelines/ngsi_ld_data_anonymization/metadata.yaml
-      path: data_loaders/data_loader_ngsild.py
-  downstream_blocks:
-  - data_anonymizer
-========
       path: data_loaders/dataframe_forwarder.py
   downstream_blocks:
   - dataframe_forwarder_transformer
->>>>>>>> a41c774 (Create branch and initila version for Generic Pipeline):default_repo/pipelines/data_preprocesing_test/metadata.yaml
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-<<<<<<<< HEAD:default_repo/pipelines/ngsi_ld_data_anonymization/metadata.yaml
-  name: data_loader_ngsild
-========
   name: dataframe_forwarder
->>>>>>>> a41c774 (Create branch and initila version for Generic Pipeline):default_repo/pipelines/data_preprocesing_test/metadata.yaml
   retry_config: null
   status: updated
   timeout: null
   type: data_loader
   upstream_blocks: []
-<<<<<<<< HEAD:default_repo/pipelines/ngsi_ld_data_anonymization/metadata.yaml
-  uuid: data_loader_ngsild
-- all_upstream_blocks_executed: true
-========
   uuid: dataframe_forwarder
 - all_upstream_blocks_executed: false
->>>>>>>> a41c774 (Create branch and initila version for Generic Pipeline):default_repo/pipelines/data_preprocesing_test/metadata.yaml
   color: null
   configuration: {}
   downstream_blocks: []
@@ -40,43 +25,26 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-<<<<<<<< HEAD:default_repo/pipelines/ngsi_ld_data_anonymization/metadata.yaml
-  name: data_anonymizer
-========
   name: dataframe_forwarder_transformer
->>>>>>>> a41c774 (Create branch and initila version for Generic Pipeline):default_repo/pipelines/data_preprocesing_test/metadata.yaml
   retry_config: null
   status: updated
   timeout: null
   type: transformer
   upstream_blocks:
-<<<<<<<< HEAD:default_repo/pipelines/ngsi_ld_data_anonymization/metadata.yaml
-  - data_loader_ngsild
-  uuid: data_anonymizer
-========
   - dataframe_forwarder
   uuid: dataframe_forwarder_transformer
->>>>>>>> a41c774 (Create branch and initila version for Generic Pipeline):default_repo/pipelines/data_preprocesing_test/metadata.yaml
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-<<<<<<<< HEAD:default_repo/pipelines/ngsi_ld_data_anonymization/metadata.yaml
-created_at: '2025-06-19 15:24:30.156626+00:00'
-========
 created_at: '2025-07-08 13:47:55.060691+00:00'
->>>>>>>> a41c774 (Create branch and initila version for Generic Pipeline):default_repo/pipelines/data_preprocesing_test/metadata.yaml
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-<<<<<<<< HEAD:default_repo/pipelines/ngsi_ld_data_anonymization/metadata.yaml
-name: ngsi_ld_data_anonymization
-========
 name: data_preprocessing_test
->>>>>>>> a41c774 (Create branch and initila version for Generic Pipeline):default_repo/pipelines/data_preprocesing_test/metadata.yaml
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -87,10 +55,6 @@ spark_config: {}
 tags:
 - data_preprocessing
 type: python
-<<<<<<<< HEAD:default_repo/pipelines/ngsi_ld_data_anonymization/metadata.yaml
-uuid: ngsi_ld_data_anonymization
-========
 uuid: data_preprocessing_test
->>>>>>>> a41c774 (Create branch and initila version for Generic Pipeline):default_repo/pipelines/data_preprocesing_test/metadata.yaml
 variables_dir: /home/src/mage_data/default_repo
 widgets: []

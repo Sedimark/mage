@@ -1,4 +1,4 @@
-blocks:
+locks:
 - all_upstream_blocks_executed: true
   color: null
   configuration:
