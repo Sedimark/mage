@@ -1,4 +1,4 @@
 [submodule "default_repo/utils/crossformer_wrap"]
 	path = default_repo/utils/crossformer_wrap
 	url = https://github.com/Sedimark/mage-crossformer.git
-	branch = version_2
+	branch = main
