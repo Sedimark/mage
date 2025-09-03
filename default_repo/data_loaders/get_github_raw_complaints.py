@@ -9,7 +9,7 @@ from mage_ai.data_preparation.shared.secrets import get_secret_value
 
 
 @data_loader
-def get_raw_invoice_data(*args, **kwargs):
+def get_raw_complaints_data(*args, **kwargs):
     """
     Template for loading data from API
     """

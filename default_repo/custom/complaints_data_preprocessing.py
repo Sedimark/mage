@@ -3,7 +3,6 @@ if 'custom' not in globals():
 if 'test' not in globals():
     from mage_ai.data_preparation.decorators import test
 
-
 @custom
 def complaints_data_preprocessing(complaints_df, *args, **kwargs):
     """

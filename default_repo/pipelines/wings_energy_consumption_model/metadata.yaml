@@ -3,7 +3,7 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - get_coordinates
+  - feature_engineering
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -19,40 +19,6 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - get_coordinated_data
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: get_coordinates
-  retry_config: null
-  status: executed
-  timeout: null
-  type: custom
-  upstream_blocks:
-  - github_raw_data_loader
-  uuid: get_coordinates
-- all_upstream_blocks_executed: true
-  color: null
-  configuration: {}
-  downstream_blocks:
-  - feature_engineering
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: get_coordinated_data
-  retry_config: null
-  status: executed
-  timeout: null
-  type: custom
-  upstream_blocks:
-  - get_coordinates
-  uuid: get_coordinated_data
-- all_upstream_blocks_executed: true
-  color: null
-  configuration: {}
-  downstream_blocks:
   - outliers_handling
   executor_config: null
   executor_type: local_python
@@ -60,17 +26,18 @@ blocks:
   language: python
   name: feature_engineering
   retry_config: null
-  status: executed
+  status: failed
   timeout: null
   type: custom
   upstream_blocks:
-  - get_coordinated_data
+  - github_raw_data_loader
   uuid: feature_engineering
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks:
   - data_scaling
+  - export_data_to_broker
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -83,6 +50,22 @@ blocks:
   upstream_blocks:
   - feature_engineering
   uuid: outliers_handling
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: export_data_to_broker
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - outliers_handling
+  uuid: export_data_to_broker
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
@@ -110,7 +93,7 @@ blocks:
   language: python
   name: nn_model
   retry_config: null
-  status: executed
+  status: failed
   timeout: null
   type: custom
   upstream_blocks:

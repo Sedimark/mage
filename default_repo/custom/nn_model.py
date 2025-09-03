@@ -132,6 +132,12 @@ def train_neural_network(data_dict, *args, **kwargs):
         test_mae = mean_absolute_error(y_val, y_val_pred)
         test_mape = np.mean(np.abs((y_val - y_val_pred) / y_val)) * 100
 
+        print(test_mse)
+        print(test_rmse)
+        print(test_r2)
+        print(test_mae)
+        print(test_mape)
+
         # Log metrics
         mlflow.log_metric("Train MSE", train_mse)
         mlflow.log_metric("Train RMSE", train_rmse)

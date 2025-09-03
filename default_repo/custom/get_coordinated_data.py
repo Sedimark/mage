@@ -11,62 +11,63 @@ if 'test' not in globals():
 
 # THIS BLOCK IS USED INSTEAD OF THE PARENT BLOCK TO AVOID RUNNING IT and use it as a shortcut
 
-@custom
-def fetch_coordinates_data(*args, **kwargs):
-    """
-    Template for loading data from API
-    """
-    url = 'https://raw.githubusercontent.com/Sedimark/wings_energy_consumption_prediction_model/main/Data/Dataset_mytilinaios_with lat_long.csv'
+# @custom
+# def fetch_coordinates_data(*args, **kwargs):
+#     """
+#     Template for loading data from API
+#     """
+#     url = 'https://raw.githubusercontent.com/Sedimark/wings_energy_consumption_prediction_model/main/Data/Dataset_mytilinaios_with_lat_long.csv'
 
-    # Retrieve the token from environment variable 
-    token = get_secret_value('github_token')
+#     # Retrieve the token from environment variable 
+#     token = get_secret_value('github_token')
 
-    # Add token to headers for authentication
-    headers = {'Authorization': f'token {token}'}
+#     # Add token to headers for authentication
+#     headers = {'Authorization': f'token {token}'}
 
-    # Make the GET request with headers
-    response = requests.get(url, headers=headers)
+#     # Make the GET request with headers
+#     response = requests.get(url, headers=headers)
 
-    # Raise an error if the request failed
-    response.raise_for_status()
+#     # Raise an error if the request failed
+#     response.raise_for_status()
 
-    df = pd.read_csv(io.StringIO(response.text), sep=',')
+#     df = pd.read_csv(io.StringIO(response.text), sep=',')
 
-    df = df.dropna(axis=0)
+#     df = df.dropna(axis=0)
 
-    df = df_groupby(df=df)
+#     df = df_groupby(df=df)
 
-    return df
+#     return df
 
 
-# Groupby supply_id in df
-def df_groupby(df):
+# # Groupby supply_id in df
+# @custom
+# def df_groupby(df):
 
-    grouped_df = df.groupby('SUPPLY_ID')
-    groups = grouped_df.groups
+#     grouped_df = df.groupby('SUPPLY_ID')
+#     groups = grouped_df.groups
 
-    # Convert keys to strings
-    data_dict = {}
+#     # Convert keys to strings
+#     data_dict = {}
     
-    for supply_id, indices in list(groups.items()):
-        data_dict[str(supply_id)] = df.loc[indices]  # Convert `supply_id` to string
+#     for supply_id, indices in list(groups.items()):
+#         data_dict[str(supply_id)] = df.loc[indices]  # Convert `supply_id` to string
     
-    single_row_keys = [key for key, value in data_dict.items() if len(value) == 1]
-    keys_removed = [key for key in single_row_keys]
+#     single_row_keys = [key for key, value in data_dict.items() if len(value) == 1]
+#     keys_removed = [key for key in single_row_keys]
 
-    for key in keys_removed:
-        data_dict.pop(key, None)
+#     for key in keys_removed:
+#         data_dict.pop(key, None)
 
-    zero_cons_keys = [key for key, value in data_dict.items() if value["ENERGY_CONSUMPTION"].iloc[0] == 0.0]
-    keys_removed = [key for key in zero_cons_keys]
+#     zero_cons_keys = [key for key, value in data_dict.items() if value["ENERGY_CONSUMPTION"].iloc[0] == 0.0]
+#     keys_removed = [key for key in zero_cons_keys]
 
-    for key in keys_removed:
-        data_dict.pop(key, None)
+#     for key in keys_removed:
+#         data_dict.pop(key, None)
 
-    return data_dict
+#     return data_dict
 
-    # # Read and return the CSV data
-    # return df
+#     # # Read and return the CSV data
+#     # return df
 
 
 @test

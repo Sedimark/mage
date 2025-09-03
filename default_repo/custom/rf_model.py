@@ -3,7 +3,7 @@ import mlflow
 import numpy as np
 import pandas as pd 
 import mlflow.sklearn
-import tensorflow as tf
+# import tensorflow as tf
 from mlflow.models.signature import infer_signature
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split

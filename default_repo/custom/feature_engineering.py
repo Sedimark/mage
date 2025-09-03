@@ -36,10 +36,24 @@ def final_dataset(data_dict):
 
     feature_dict = {}
 
+
     for key in data_dict.keys():
 
         key_df = data_dict[key]
         date_list_str, daily_consumption_list_total, daily_labels, daily_cons_past, mean_daily_labels = create_lists(key_df)
+
+        if len(daily_cons_past) == 0:
+            print(f"Empty daily_cons_past for ID {key}")
+            continue
+    
+    # else:
+    #     print('daily_cons_past not empty')
+
+        # if len(daily_cons_past) == 0:
+        #     print(f"Empty daily_cons_past for ID {key}")
+        #     continue  # Skip this entr
+        #     # Valid entry → process it
+        #     print(f"daily_cons_past not empty for ID {key}")
 
         mean_value = np.mean(daily_cons_past)
         std_value = np.std(daily_cons_past)
@@ -64,13 +78,16 @@ def final_dataset(data_dict):
         
         final_df.loc[key] = features_list
 
-        if final_df.empty:
-            raise ValueError("The final_df DataFrame is")
+    if final_df.empty:
+        raise ValueError("The final_df DataFrame is empty")
+
+    print(f"ID: {key_df['SUPPLY_ID'].iloc[0]} → Length total: {len(daily_consumption_list_total)} | Past: {len(daily_cons_past)} | Labels: {len(daily_labels)}")
 
     return final_df
 
 
 def create_lists(dataframe):
+    
     # Convert 'INVOICE_DATE' to datetime format
     dataframe['INVOICE_DATE'] = pd.to_datetime(dataframe['INVOICE_DATE'])
 
@@ -128,12 +145,16 @@ def create_lists(dataframe):
         daily_consumption_list_total.append(daily_cons)
 
     # Split the daily consumption list
-    daily_cons_past = [
-        value for value in daily_consumption_list_total if value != daily_consumption_list_total[-1]
-    ]
-    daily_labels = [
-        value for value in daily_consumption_list_total if value == daily_consumption_list_total[-1]
-    ]
+    # daily_cons_past = [
+    #     value for value in daily_consumption_list_total if value != daily_consumption_list_total[-1]
+    # ]
+    # daily_labels = [
+    #     value for value in daily_consumption_list_total if value == daily_consumption_list_total[-1]
+    # ]
+
+    daily_cons_past = daily_consumption_list_total[:-1]
+    daily_labels = [daily_consumption_list_total[-1]] if daily_consumption_list_total else []
+
 
     # Calculate the mean of daily labels
     mean_daily_labels = np.mean(daily_labels)

@@ -13,7 +13,7 @@ blocks:
   language: python
   name: get_github_invoice_raw_data
   retry_config: null
-  status: executed
+  status: failed
   timeout: null
   type: data_loader
   upstream_blocks: []
@@ -113,7 +113,7 @@ blocks:
   language: python
   name: rf_model
   retry_config: null
-  status: executed
+  status: failed
   timeout: null
   type: custom
   upstream_blocks:
