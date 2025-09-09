@@ -2,3 +2,6 @@
 	path = default_repo/utils/crossformer_wrap
 	url = https://github.com/Sedimark/mage-crossformer.git
 	branch = main
+[submodule "default_repo/utils/crossformer-wrap"]
+	path = default_repo/utils/crossformer-wrap
+	url = https://github.com/Sedimark/mage-crossformer.git

@@ -1,7 +1,8 @@
-from default_repo.utils.generic_pipeline_enabler.default import export_parent_data
-from dqp import DataSource, DeduplicationModule
 import pandas as pd
+import subprocess
+import tempfile
 import logging
+import json
 
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
@@ -42,11 +43,8 @@ def transform(data, *args, **kwargs):
     Returns:
         Anything (e.g. data frame, dictionary, array, int, str, etc.)
     """
-
-    data_source = DataSource(data.copy())
-
     columns = kwargs.get("columns")
-    method = kwargs.get("method")
+    method = kwargs.get("method", "RecordLinkage")
     indexing_method = kwargs.get("indexing_method", "Full")
     index_column = kwargs.get("index_column")
     match_threshold = kwargs.get("match_threshold", 2)
@@ -56,8 +54,10 @@ def transform(data, *args, **kwargs):
         "processing_options": "remove"
     }
 
+    value_columns = [column for column in data.columns if column.endswith("__value")]
+
     if method == "RecordLinkage":
-        parameters["model_config"]: {
+        config["model_config"] = {
             "linkage_rules": [],
             "match_threshold": match_threshold,
             "indexing_method": indexing_method,
@@ -70,7 +70,7 @@ def transform(data, *args, **kwargs):
                     {
                         "field_1": column,
                         "field_2": column,
-                        "base_method": convert_data_type_to_record_linkage(data, column) 
+                        "base_method": convert_data_type_to_record_linkage(data, column),
                         "parameters": {},
                     }
                     for column in columns if column != index_column and column in data.columns
@@ -80,7 +80,7 @@ def transform(data, *args, **kwargs):
                     {
                         "field_1": column,
                         "field_2": column,
-                        "base_method": convert_data_type_to_record_linkage(data, column) 
+                        "base_method": convert_data_type_to_record_linkage(data, column),
                         "parameters": {},
                     }
                     for column in columns if column in data.columns
@@ -91,7 +91,7 @@ def transform(data, *args, **kwargs):
                     {
                         "field_1": column,
                         "field_2": column,
-                        "base_method": convert_data_type_to_record_linkage(data, column) 
+                        "base_method": convert_data_type_to_record_linkage(data, column),
                         "parameters": {},
                     }
                     for column in data.columns if column != index_column
@@ -101,7 +101,7 @@ def transform(data, *args, **kwargs):
                     {
                         "field_1": column,
                         "field_2": column,
-                        "base_method": convert_data_type_to_record_linkage(data, column) 
+                        "base_method": convert_data_type_to_record_linkage(data, column), 
                         "parameters": {},
                     }
                     for column in data.columns
@@ -109,11 +109,35 @@ def transform(data, *args, **kwargs):
 
     logger.info("Running configuration is %s.", config)
 
-    module = DeduplicationModule(**config)
+    with tempfile.NamedTemporaryFile(mode="w+", suffix=".json") as tmp:
+        json.dump(config, tmp, indent=4)
+        tmp.flush()
+        tmp.seek(0)
 
-    result = module.process(data_source)._df
+        with tempfile.NamedTemporaryFile(mode="w+", suffix=".csv") as tmp_data:
+            data.to_csv(tmp_data.name, index=False)
+            
+            result = subprocess.run(
+                ["bash", "/home/src/default_repo/utils/dqp_scripts/dqp_deduplication.sh", tmp.name, tmp_data.name],
+                shell=False,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            
+            print("Return code:", result.returncode)
+            print("Stdout:", result.stdout)
+            print("Stderr:", result.stderr)
+            
+            if result.returncode != 0:
+                print(f"Script failed with code {result.returncode}")
+                return data.to_csv("record")
 
-    return export_parent_data(result)
+            result = pd.read_csv(tmp_data.name)
+
+    data.loc[:, data_copy.columns] = result.values
+
+    return data.to_dict("record")
 
 
 @test

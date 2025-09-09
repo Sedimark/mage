@@ -1,3 +1,6 @@
+import json
+from sklearn.preprocessing import StandardScaler
+
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
 if 'test' not in globals():
@@ -6,20 +9,20 @@ if 'test' not in globals():
 
 @transformer
 def transform(data, *args, **kwargs):
-    """
-    Template code for a transformer block.
+    scaler = StandardScaler()
 
-    Add more parameters to this function if this block has multiple parent blocks.
-    There should be one parameter for each output variable from each parent block.
+    cols = [col for col in data.columns if col.endswith("__value")]
+    data[cols] = scaler.fit_transform(data[cols])
+    
+    scaler_config = {
+        "mean_": scaler.mean_.tolist(),
+        "scale_": scaler.scale_.tolist(),
+        "n_features_in_": scaler.n_features_in_
+    }
 
-    Args:
-        data: The output from the upstream parent block
-        args: The output from any additional upstream blocks (if applicable)
+    with open("default_repo/scaler_config.json", "w") as f:
+        json.dump(scaler_config, f)
 
-    Returns:
-        Anything (e.g. data frame, dictionary, array, int, str, etc.)
-    """
-    data['value'] = 0
     return data.to_dict(orient='records')
 
 

@@ -12,8 +12,9 @@ def transform(data, *args, **kwargs):
     """
     Transform DataFrame back to JSON-LD format
     """
-    df = interoperability_enabler_to_ngsild(data)
-    return df
+    context_df, temporal_df = data
+    data = interoperability_enabler_to_ngsild(context_df, temporal_df)
+    return data
 
 
 @test

@@ -1,14 +1,15 @@
 import io
 import os
 import re
+import json
 import time
 import requests
 import datetime
 import pandas as pd
 import numpy as np
 from datetime import timezone
-from InteroperabilityEnabler.utils.data_formatter import data_to_dataframe
-from InteroperabilityEnabler.utils.data_mapper import data_conversion, restore_ngsi_ld_structure
+from InteroperabilityEnabler.utils.data_formatter import data_formatter
+from InteroperabilityEnabler.utils.data_mapper import data_mapper
 from mage_ai.orchestration.triggers.api import trigger_pipeline
 from mage_ai.orchestration.db.models.schedules import PipelineRun
 
@@ -19,7 +20,7 @@ IGNORE_KWARGS = [
 ]
     
 
-def load_temporal_data(ngsi_ld_host: str, ngsi_ld_link_context: str, entity_id: str, start_time: str | None, end_time: str | None, attrs: str | None) -> dict:
+def load_temporal_data(ngsi_ld_host: str, ngsi_ld_link_context: str, entity_id: str, start_time: str | None, end_time: str | None, attrs: str | None, dataset_id: str | None) -> dict:
     """
     Load temporal data from the NGSI-LD API.
     Args:
@@ -42,33 +43,77 @@ def load_temporal_data(ngsi_ld_host: str, ngsi_ld_link_context: str, entity_id: 
         raise ValueError("entity_id must be provided")
     
     datetime_format = "%Y-%m-%dT%H:%M:%SZ"
+                       
     url = f"{ngsi_ld_host}/ngsi-ld/v1/temporal/entities/{entity_id}"
+
+    # <https://sedimark.github.io/broker/jsonld-contexts/sedimark-helsinki-compound.jsonld>; rel="http://www.w3.org/ns/json-ld#context"; type="application/ld+json"
     headers = {"Link": f'<{ngsi_ld_link_context}>; rel="http://www.w3.org/ns/json-ld#context"; type="application/ld+json"'}
 
     if start_time is not None:
         try:
-            datetime.strptime(start_time, datetime_format)
+            datetime.datetime.strptime(start_time, datetime_format)
         except ValueError:
-            raise ValueError(f"start_time must be in format {datetime_format}")
+            raise ValueError(f"start_time must be in format {datetime_format} actual values is {start_time}")
     
     if end_time is not None:
         try:
-            datetime.strptime(end_time, datetime_format)
+            datetime.datetime.strptime(end_time, datetime_format)
         except ValueError:
-            raise ValueError(f"end_time must be in format {datetime_format}")
+            raise ValueError(f"end_time must be in format {datetime_format} actual values is {end_time} ")
 
     params = None
     timerel = None
     if start_time is not None:
         if end_time is None:
-            end_time = datetime.now(timezone.utc).strftime(datetime_format)
+            end_time = datetime.datetime.now(timezone.utc).strftime(datetime_format)
         timerel = "between" 
 
     params = {"timerel": timerel, "timeAt": start_time, "endTimeAt": end_time, "attrs": attrs}
+
+    if dataset_id is not None:
+        params["datasetId"] = dataset_id
+
     response = requests.get(url, headers=headers, params=params)
+
+    print(f"Request URL: {response.url}, Headers: {headers}, Params: {params}")
     response.raise_for_status()
 
     return response.json()
+
+
+def export_temporal_data(temporal_data: dict, ngsi_ld_host: str, ngsi_ld_link_context: str) -> dict:
+    """
+    Export temporal data to the NGSI-LD API.
+    Args:
+        temporal_data (dict): The temporal data to export.
+        ngsi_ld_host (str): The base URL of the NGSI-LD API.
+        ngsi_ld_link_context (str): The link context for NGSI-LD.
+    Returns:
+        dict: The response from the NGSI-LD API after exporting the data.
+    Raises:
+        ValueError: If the temporal_data is not a dictionary.
+    """
+    if not isinstance(temporal_data, dict):
+        raise ValueError("temporal_data must be a dictionary")
+    
+    url = f"{ngsi_ld_host}/ngsi-ld/v1/temporal/entities"
+    headers = {
+        "Content-Type": "application/json",
+        "Link": f'<{ngsi_ld_link_context}>; rel="http://www.w3.org/ns/json-ld#context"; type="application/ld+json"'
+    }
+    
+    # Hardcoded
+    for entry in temporal_data['flow']:
+        if "hasQuality" in entry:
+            del entry['hasQuality']
+
+    json_data = json.dumps(temporal_data, indent=2)
+    print(json_data)
+
+    response = requests.post(url, headers=headers, data=json_data)
+    response.raise_for_status()
+
+    return True
 
 
 def interoperability_enabler_to_df(temporal_data: dict) -> pd.DataFrame:
@@ -82,31 +127,33 @@ def interoperability_enabler_to_df(temporal_data: dict) -> pd.DataFrame:
     if not isinstance(temporal_data, dict):
         raise ValueError("temporal_data must be a dictionary")
     
-    metadata_columns = ['id', 'type']
-    metadata_values = {f'entity_{k}': v for k, v in temporal_data.items() if k in metadata_columns}
+    # metadata_columns = ['id', 'type']
+    # metadata_values = {f'entity_{k}': v for k, v in temporal_data.items() if k in metadata_columns}
 
-    def is_uri(s):
-        return isinstance(s, str) and re.match(r'^https?://', s) is not None
+    # def is_uri(s):
+    #     return isinstance(s, str) and re.match(r'^https?://', s) is not None
 
-    value_columns = {k: v for k, v in temporal_data.items() if k not in metadata_columns and isinstance(v, list)}
+    # value_columns = {k: v for k, v in temporal_data.items() if k not in metadata_columns and isinstance(v, list)}
 
-    result_df = pd.DataFrame()
-    for k, v in value_columns.items():
-        temp_df = data_to_dataframe(v)
-        if is_uri(k):
-            temp_df['schema_uri'] = k
-            temp_df['schema'] = k.split('/')[-1].split('#')[-1]
-        else:
-            temp_df['schema'] = k
-        for prop, value in metadata_values.items():
-            temp_df[prop] = value
+    # result_df = pd.DataFrame()
+    # for k, v in value_columns.items():
+    #     temp_df = data_to_dataframe(v)
+    #     if is_uri(k):
+    #         temp_df['schema_uri'] = k
+    #         temp_df['schema'] = k.split('/')[-1].split('#')[-1]
+    #     else:
+    #         temp_df['schema'] = k
+    #     for prop, value in metadata_values.items():
+    #         temp_df[prop] = value
 
-        result_df = pd.concat([result_df, temp_df], ignore_index=True)
+    #     result_df = pd.concat([result_df, temp_df], ignore_index=True)
 
-    return result_df
+    context_df, temporal_df = data_formatter(temporal_data)
+
+    return context_df, temporal_df
 
 
-def interoperability_enabler_to_ngsild(data):
+def interoperability_enabler_to_ngsild(context_df: pd.DataFrame, temporal_df: pd.DataFrame) -> dict:
     """
     Flatten dataframe based on schema_uri with column names in format: schema_uri[index].column_name
     
@@ -116,44 +163,44 @@ def interoperability_enabler_to_ngsild(data):
     Returns:
         DataFrame: Flattened dataframe with new column naming convention
     """
-    entity_id = data['entity_id'][0]
-    entity_type = data['entity_type'][0]
+    # entity_id = data['entity_id'][0]
+    # entity_type = data['entity_type'][0]
 
-    schema_col = 'schema_uri' if 'schema_uri' in data.columns else 'schema'
+    # schema_col = 'schema_uri' if 'schema_uri' in data.columns else 'schema'
 
-    if schema_col not in data.columns:
-        raise ValueError(f"DataFrame must contain {schema_col} column")
+    # if schema_col not in data.columns:
+    #     raise ValueError(f"DataFrame must contain {schema_col} column")
     
-    schema = data[schema_col][0]
-    cols_to_remove = ['entity_id', 'entity_type']
+    # schema = data[schema_col][0]
+    # cols_to_remove = ['entity_id', 'entity_type']
 
-    if schema_col == 'schema_uri':
-        cols_to_remove.append('schema')
+    # if schema_col == 'schema_uri':
+    #     cols_to_remove.append('schema')
 
-    data = data.drop(cols_to_remove, axis=1)
-    grouped = data.groupby(schema_col)
+    # data = data.drop(cols_to_remove, axis=1)
+    # grouped = data.groupby(schema_col)
     
-    flattened_data = {}
+    # flattened_data = {}
     
-    for schema, group in grouped:
-        # Reset index to get sequential indexing within each group
-        group_reset = group.reset_index(drop=True)
+    # for schema, group in grouped:
+    #     # Reset index to get sequential indexing within each group
+    #     group_reset = group.reset_index(drop=True)
         
-        # For each row in the group, create columns with the new naming convention
-        for idx, (_, row) in enumerate(group_reset.iterrows()):
-            for col_name, value in row.items():
-                if col_name == schema_col:
-                    continue
-                new_col_name = f"{schema}[{idx}].{col_name}"
-                flattened_data[new_col_name] = value
+    #     # For each row in the group, create columns with the new naming convention
+    #     for idx, (_, row) in enumerate(group_reset.iterrows()):
+    #         for col_name, value in row.items():
+    #             if col_name == schema_col:
+    #                 continue
+    #             new_col_name = f"{schema}[{idx}].{col_name}"
+    #             flattened_data[new_col_name] = value
     
-    flattened_df = pd.DataFrame([flattened_data])
-    flattened_df['id'] = entity_id
-    flattened_df['type'] = entity_type
+    # flattened_df = pd.DataFrame([flattened_data])
+    # flattened_df['id'] = entity_id
+    # flattened_df['type'] = entity_type
 
-    converted_data = data_conversion(flattened_df)
-    restored_data = restore_ngsi_ld_structure(converted_data)
-
+    # # converted_data = data_conversion(flattened_df)
+    # # restored_data = restore_ngsi_ld_structure(converted_data)
+    restored_data = data_mapper(context_df, temporal_df)
     return restored_data
 
 

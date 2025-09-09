@@ -27,14 +27,7 @@ def transform(data, *args, **kwargs):
     Returns:
         Anything (e.g. data frame, dictionary, array, int, str, etc.)
     """
-
-    method = kwargs.get("method", "KNNImputer")
-
-    config = {
-        "imputation_method": method
-    }
-
-    logger.info("Running configuration is %s.", config)
+    logger.info("Running configuration is %s.", {})
 
     data = pd.read_csv("/home/src/default_repo/broker_values.csv")
     value_columns = [column for column in data.columns if column.endswith("__value")]
@@ -43,7 +36,7 @@ def transform(data, *args, **kwargs):
         data.to_csv(tmp.name, index=False)
 
         result = subprocess.run(
-            ["bash", "/home/src/default_repo/utils/dqp_scripts/dqp_missing.sh", method, tmp.name],
+            ["bash", "/home/src/default_repo/utils/dqp_scripts/dqp_profiling.sh", tmp.name],
             shell=False,
             text=True,
             stdout=subprocess.PIPE,

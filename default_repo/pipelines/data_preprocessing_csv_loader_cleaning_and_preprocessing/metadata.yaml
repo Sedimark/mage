@@ -2,25 +2,26 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration:
-    load_csv:
-      type: boolean
-      description: Whether to load the CSV file or not. Default is False.
-      default: false
     csv_file:
-      type: string
-      description: The path to the CSV file to load. If not provided, the CSV file will not be loaded.
       default: null
+      description: The path to the CSV file to load. If not provided, the CSV file
+        will not be loaded.
+      type: string
     join_csv_strategy:
-      type: drop_down
-      description: The strategy to use for joining the CSV data with the existing DataFrame.
-      values:
-        - concat
-        - merge
-        - join
-        - replace
       default: concat
-  downstream_blocks:
-  - missing_values_data_handler
+      description: The strategy to use for joining the CSV data with the existing
+        DataFrame.
+      type: drop_down
+      values:
+      - concat
+      - merge
+      - join
+      - replace
+    load_csv:
+      default: false
+      description: Whether to load the CSV file or not. Default is False.
+      type: boolean
+  downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -35,29 +36,34 @@ blocks:
 - all_upstream_blocks_executed: false
   color: null
   configuration:
-    strategy:
-      type: drop_down
-      description: The strategy to handle missing values.
-      values:
-        - default_imputation
-        - drop_rows
-        - drop_cols
-        - impute_mean
-        - impute_median
-        - impute_mode
-        - impute_constant
-      default: default_imputation
     columns:
+      description: The list columns to apply the strategy on. If empty, all columns
+        will be considered. e.g. ["column1", "column2"]
       type: array
-      description: 'The list columns to apply the strategy on. If empty, all columns will be considered. e.g. ["column1", "column2"]'
-    impute_value:
-      type: number
-      description: The value to use for imputation when the strategy is set to `impute_constant`. If empty, the default value 0 will be used.
-      default: 0
     drop_threshold_col:
-      type: number
-      description: The threshold for dropping columns based on the percentage of missing values. If the percentage of missing values in a column exceeds this threshold, the column will be dropped. The value should be between 0 and 1. Default is 0.5
       default: 0.5
+      description: The threshold for dropping columns based on the percentage of missing
+        values. If the percentage of missing values in a column exceeds this threshold,
+        the column will be dropped. The value should be between 0 and 1. Default is
+        0.5
+      type: number
+    impute_value:
+      default: 0
+      description: The value to use for imputation when the strategy is set to `impute_constant`.
+        If empty, the default value 0 will be used.
+      type: number
+    strategy:
+      default: default_imputation
+      description: The strategy to handle missing values.
+      type: drop_down
+      values:
+      - default_imputation
+      - drop_rows
+      - drop_cols
+      - impute_mean
+      - impute_median
+      - impute_mode
+      - impute_constant
   downstream_blocks:
   - data_type_handler
   executor_config: null
@@ -70,17 +76,19 @@ blocks:
   timeout: null
   type: transformer
   upstream_blocks:
-  - csv_loader_and_merger
+  - dataframe_forwarder
   uuid: missing_values_data_handler
 - all_upstream_blocks_executed: false
   color: null
   configuration:
-      type_conversions:
-        type: dictionary
-        description: 'A dictionary of type conversions to apply to the columns. e.g. {"column1": "int", "column2": "float"}'
-      date_time_format:
-        type: string
-        description: 'The date time format to use for parsing date time columns. e.g. %Y-%m-%dT%H:%M:%S'
+    date_time_format:
+      description: The date time format to use for parsing date time columns. e.g.
+        %Y-%m-%dT%H:%M:%S
+      type: string
+    type_conversions:
+      description: 'A dictionary of type conversions to apply to the columns. e.g.
+        {"column1": "int", "column2": "float"}'
+      type: dictionary
   downstream_blocks:
   - duplicates_handler
   executor_config: null
@@ -98,17 +106,19 @@ blocks:
 - all_upstream_blocks_executed: false
   color: null
   configuration:
-    subset:
-      type: array
-      description: 'The list of columns to consider for identifying duplicates. If empty, all columns will be considered. e.g. ["column1", "column2"]'
     keep:
-      type: drop_down
-      description: 'The strategy to use for keeping duplicates. Options are `first`, `last`, or False. If set to False, all duplicates will be removed.'
-      values:
-        - 'first'
-        - 'last'
-        - 'false'
       default: first
+      description: The strategy to use for keeping duplicates. Options are `first`,
+        `last`, or False. If set to False, all duplicates will be removed.
+      type: drop_down
+      values:
+      - first
+      - last
+      - 'false'
+    subset:
+      description: The list of columns to consider for identifying duplicates. If
+        empty, all columns will be considered. e.g. ["column1", "column2"]
+      type: array
   downstream_blocks:
   - columns_name_handler
   executor_config: null
@@ -126,12 +136,14 @@ blocks:
 - all_upstream_blocks_executed: false
   color: null
   configuration:
-    rename_map:
-      type: dictionary
-      description: 'A dictionary mapping old column names to new column names. e.g. {"old_name1": "new_name1", "old_name2": "new_name2"}'
     drop_columns:
+      description: A list of columns to drop. If empty, no columns will be dropped.
+        e.g. ["column1", "column2"]
       type: array
-      description: 'A list of columns to drop. If empty, no columns will be dropped. e.g. ["column1", "column2"]'
+    rename_map:
+      description: 'A dictionary mapping old column names to new column names. e.g.
+        {"old_name1": "new_name1", "old_name2": "new_name2"}'
+      type: dictionary
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
@@ -145,6 +157,24 @@ blocks:
   upstream_blocks:
   - duplicates_handler
   uuid: columns_name_handler
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_loaders/dataframe_forwarder.py
+  downstream_blocks:
+  - missing_values_data_handler
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: dataframe_forwarder
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: dataframe_forwarder
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

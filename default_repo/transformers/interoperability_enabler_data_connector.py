@@ -13,8 +13,8 @@ def transform(data, *args, **kwargs):
     if not data:
         return pd.DataFrame()
     
-    df = interoperability_enabler_to_df(data)
-    return df
+    context_df, temporal_df = interoperability_enabler_to_df(data)
+    return context_df, temporal_df
 
 
 @test

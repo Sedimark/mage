@@ -9,16 +9,21 @@ if 'test' not in globals():
 
 @data_loader
 def load_data_from_api(*args, **kwargs):
-    query_broker_flag = kwargs.get('get_data_from_broker', True)
+    # query_broker_flag = kwargs.get('get_data_from_broker', True)
 
-    if not query_broker_flag:
-        return {}
+    # if not query_broker_flag:
+    #     return {}
 
-    context = os.getenv("NGSI_LD_LINK_CONTEXT", "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld")
+    # <https://sedimark.github.io/broker/jsonld-contexts/sedimark-helsinki-compound.jsonld>; rel="http://www.w3.org/ns/json-ld#context"; type="application/ld+json"
+    # context = os.getenv("NGSI_LD_LINK_CONTEXT", "https://sedimark.github.io/broker/jsonld-contexts/sedimark-helsinki-compound.jsonld")
+    context = "https://sedimark.github.io/broker/jsonld-contexts/sedimark-helsinki-compound.jsonld"
+
     host = os.getenv("NGSI_LD_HOST", None)
     start_time = kwargs.get("start_time", None)
     end_time = kwargs.get("end_time", None)
     attrs = kwargs.get("attrs", None)
+    dataset_id = kwargs.get('datasetId', 'urn:ngsi-ld:Dataset:pedestrian')
+
     entity_id = kwargs.get("entity_id", "urn:ngsi-ld:Sedimark:CrowdFlowObserved:100016667")
 
     # start_time = "2022-11-16T07:00:00Z"
@@ -27,7 +32,7 @@ def load_data_from_api(*args, **kwargs):
     # attrs = "https://vocab.egm.io/flow"
     # entity_id = "urn:ngsi-ld:Sedimark:CrowdFlowObserved:100016667"
 
-    temporal_data = load_temporal_data(host, context, entity_id, start_time, end_time, attrs)
+    temporal_data = load_temporal_data(host, context, entity_id, start_time, end_time, attrs, dataset_id)
     return temporal_data
 
 

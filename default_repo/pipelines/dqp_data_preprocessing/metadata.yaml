@@ -13,10 +13,10 @@ blocks:
         DataFrame.
       type: drop_down
       values:
-        - concat
-        - merge
-        - join
-        - replace
+      - concat
+      - merge
+      - join
+      - replace
     load_csv:
       default: false
       description: Whether to load the CSV file or not. Default is False.
@@ -42,86 +42,40 @@ blocks:
       description: The method used for missing value imputation by the DQP module.
       type: drop_down
       values:
-        - SimpleImputer
-        - KNNImputer
-        - LogisticRegression
-        - Interpolation
+      - SimpleImputer
+      - KNNImputer
+      - LogisticRegression
+      - Interpolation
   downstream_blocks:
-  - data_type_handler
+  - profiler
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: dqp_missing_values
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
   - csv_loader_and_merger
   uuid: dqp_missing_values
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
-  configuration:
-    file_source:
-      path: transformers/data_type_handler.py
-  downstream_blocks:
-  - dqp_deduplication
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: data_type_handler
-  retry_config: null
-  status: not_executed
-  timeout: null
-  type: transformer
-  upstream_blocks:
-  - dqp_missing_values
-  uuid: data_type_handler
-- all_upstream_blocks_executed: false
-  color: null
-  configuration:
-    columns:
-      description: The list of columns that will be used for RecordLinkage, if empty
-        all columns will be used. e.g. ["column1", "column2"]
-      type: array
-    index_column:
-      description: The column that will be used as index for RecordLinkage.
-      type: string
-    indexing_method:
-      default: Full
-      description: The method used for deduplication by the DQP module.
-      type: drop_down
-      values:
-        - Full
-        - Block
-        - Neighbourhood
-    match_threshold:
-      default: 2
-      description: How many matched columns are required to determine if the rows
-        are matches.
-      type: number
-    method:
-      default: ActiveDedup
-      description: The method used for deduplication by the DQP module.
-      type: drop_down
-      values:
-        - ActiveDedup
-        - RecordLinkage
+  configuration: {}
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: dqp_deduplication
+  name: profiler
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
-  - data_type_handler
-  uuid: dqp_deduplication
+  - dqp_missing_values
+  uuid: profiler
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

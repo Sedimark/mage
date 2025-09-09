@@ -21,7 +21,7 @@ def correct_data_types(data: pd.DataFrame, *args, **kwargs) -> pd.DataFrame:
         logger: MageAI logger.
     """
     logger = kwargs.get('logger')
-    df = data.copy()
+    df = data[[column for column in data.columns if column.endswith("__value")]]
 
     type_conversions = kwargs.get('type_conversions', {})
     datetime_format_config = kwargs.get('datetime_format') # Can be a string or a dict

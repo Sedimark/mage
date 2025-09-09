@@ -4,59 +4,59 @@ blocks:
   configuration:
     file_path: /home/src/default_repo/data_loaders/dataframe_forwarder.py
     file_source:
-      path: data_loaders/dataframe_forwarder.py
+      path: data_loaders/dataframe_forwarder_1.py
   downstream_blocks:
-  - crossformer_training
+  - crossformer_training_1
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: dataframe_forwarder
+  name: dataframe_forwarder_1
   retry_config: null
   status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: dataframe_forwarder
+  uuid: dataframe_forwarder_1
 - all_upstream_blocks_executed: true
   color: null
   configuration:
     file_path: transformers/crossformer_training.py
     file_source:
-      path: transformers/crossformer_training.py
+      path: transformers/crossformer_training_1.py
   downstream_blocks:
-  - crossformer_inference
+  - crossformer_inference_1
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: crossformer_training
+  name: crossformer_training_1
   retry_config: null
   status: updated
   timeout: null
   type: transformer
   upstream_blocks:
-  - dataframe_forwarder
-  uuid: crossformer_training
+  - dataframe_forwarder_1
+  uuid: crossformer_training_1
 - all_upstream_blocks_executed: false
   color: null
   configuration:
     file_path: transformers/crossformer_inference.py
     file_source:
-      path: transformers/crossformer_inference.py
+      path: transformers/crossformer_inference_1.py
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: crossformer_inference
+  name: crossformer_inference_1
   retry_config: null
   status: updated
   timeout: null
   type: transformer
   upstream_blocks:
-  - crossformer_training
-  uuid: crossformer_inference
+  - crossformer_training_1
+  uuid: crossformer_inference_1
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
@@ -68,7 +68,7 @@ executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: data_manipulation_test
+name: data_manipulation_test_1
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -79,6 +79,6 @@ spark_config: {}
 tags:
 - data_manipulation
 type: python
-uuid: data_manipulation_test
+uuid: data_manipulation_test_1
 variables_dir: /home/src/mage_data/default_repo
 widgets: []

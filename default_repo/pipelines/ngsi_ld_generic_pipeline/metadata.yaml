@@ -6,24 +6,10 @@ blocks:
       default: https://vocab.egm.io/flow
       description: Filtering attributes to filter timeseries for the selected entity
       type: string
-    end_time:
-      default: null
-      description: The end date of the time interval.
-      format: YYYY-MM-DDThh:mm:ssZ
-      type: date
     entity_id:
       default: urn:ngsi-ld:Sedimark:CrowdFlowObserved:100016667
       description: This is the ID of the entity that is stored in the NGSI-LD Broker
       type: string
-    start_time:
-      default: '2022-11-16T07:00:00Z'
-      description: The start date of the time interval.
-      format: YYYY-MM-DDThh:mm:ssZ
-      type: date
-    get_data_from_broker:
-      default: true
-      description: If true, the data will be fetched from the NGSI-LD Broker.
-      type: boolean
   downstream_blocks:
   - interoperability_enabler_data_connector
   executor_config: null
@@ -32,12 +18,12 @@ blocks:
   language: python
   name: ngsi_ld_temporal_loader
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: ngsi_ld_temporal_loader
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks:
@@ -48,22 +34,22 @@ blocks:
   language: python
   name: interoperability_enabler_data_connector
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
   - ngsi_ld_temporal_loader
   uuid: interoperability_enabler_data_connector
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     data_preprocessing_pipeline_trigger:
-      default: data_preprocessing_test
+      default: data_preprocessing_test_copy
       description: Trigger for the data preprocessing pipeline
       tag: data_preprocessing
       type: trigger
   downstream_blocks:
-  - data_manipulation_trigger
+  - data_profiler
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -76,7 +62,24 @@ blocks:
   upstream_blocks:
   - interoperability_enabler_data_connector
   uuid: data_preprocessing_trigger
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - data_manipulation_trigger
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: data_profiler
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - data_preprocessing_trigger
+  uuid: data_profiler
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     data_manipulation_pipeline_trigger:
@@ -92,13 +95,30 @@ blocks:
   language: python
   name: data_manipulation_trigger
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
-  - data_preprocessing_trigger
+  - data_profiler
   uuid: data_manipulation_trigger
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - ngsi_ld_temporal_exporter
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: interoperability_enabler_data_exporter
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - data_manipulation_trigger
+  uuid: interoperability_enabler_data_exporter
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks: []
@@ -106,14 +126,14 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: interoperability_enabler_data_exporter
+  name: ngsi_ld_temporal_exporter
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
-  type: transformer
+  type: data_exporter
   upstream_blocks:
-  - data_manipulation_trigger
-  uuid: interoperability_enabler_data_exporter
+  - interoperability_enabler_data_exporter
+  uuid: ngsi_ld_temporal_exporter
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

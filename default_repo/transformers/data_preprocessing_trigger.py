@@ -15,17 +15,19 @@ def transform(data, *args, **kwargs):
     Main transformation block that triggers a child pipeline and processes its results.
     """
 
-    child_pipeline_uuid = kwargs.get("data_preprocessing_pipeline_trigger", "data_preprocessing_test")
+    context_df, temporal_df = data
+
+    child_pipeline_uuid = kwargs.get("data_preprocessing_pipeline_trigger", "data_preprocesing_test")
 
     df = execute_pipeline_and_get_final_result(
         pipeline_uuid=child_pipeline_uuid,
-        data=data,
+        data=temporal_df,
         kwargs=kwargs,
         max_output_chars=300,
         poll_interval=10
     )
     
-    return df
+    return context_df, df
 
 
 @test
