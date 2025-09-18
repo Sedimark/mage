@@ -1,5 +1,7 @@
-from default_repo.utils.crossformer_wrap.wrap import train#, cfg_base
+from default_repo.utils.crossformer_wrap.manipulation import initialize_manipulation, MageCrossFormer
+from crossformer.utils.tools import Postprocessor
 import pandas as pd
+import pickle
 
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
@@ -45,6 +47,7 @@ def transform(data, *args, **kwargs):
     "precision": 32,
     "patience": 5,
     "num_workers": 31,
+    "method": "zscore",
     }
     # cfg_base = {
     #     # "data_dim": 8,
@@ -75,5 +78,14 @@ def transform(data, *args, **kwargs):
     print(f'Value columns: {value_cols}')
     print(data[value_cols].shape)
 
-    model_name = train(cfg_base, data[value_cols])
+    with open("default_repo/scaler_config.pkl", "rb") as fp:
+        stats = pickle.load(fp)
+
+    postprocessor = Postprocessor(stats=stats)
+
+    data[value_cols] = pd.DataFrame(postprocessor.inverse_transform(data[value_cols].values))
+    
+    manipulation = initialize_manipulation("mage_crossformer", cfg=cfg_base)
+    model_name = manipulation.train(data[value_cols])
+    
     return model_name, value_cols, cfg_base['in_len'], data

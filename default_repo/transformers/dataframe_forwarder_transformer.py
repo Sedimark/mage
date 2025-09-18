@@ -1,5 +1,5 @@
-import json
-from sklearn.preprocessing import StandardScaler
+import pickle
+from crossformer.utils.tools import Preprocessor
 
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
@@ -9,19 +9,14 @@ if 'test' not in globals():
 
 @transformer
 def transform(data, *args, **kwargs):
-    scaler = StandardScaler()
-
     cols = [col for col in data.columns if col.endswith("__value")]
-    data[cols] = scaler.fit_transform(data[cols])
-    
-    scaler_config = {
-        "mean_": scaler.mean_.tolist(),
-        "scale_": scaler.scale_.tolist(),
-        "n_features_in_": scaler.n_features_in_
-    }
+    preprocessor = Preprocessor(method="zscore",per_feature=True)
+    preprocessor.fit(data[cols].values)
+    data[cols] = preprocessor.transform(data[cols].values)
+    stats = preprocessor.export()
 
-    with open("default_repo/scaler_config.json", "w") as f:
-        json.dump(scaler_config, f)
+    with open("default_repo/scaler_config.pkl", "wb") as f:
+        pickle.dump(stats, f)
 
     return data.to_dict(orient='records')
 

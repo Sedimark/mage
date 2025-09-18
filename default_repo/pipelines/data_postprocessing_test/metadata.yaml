@@ -1,0 +1,60 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_loaders/dataframe_forwarder_1.py
+  downstream_blocks:
+  - dataframe_postprocessing
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: dataframe_forwarder_1
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: dataframe_forwarder_1
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: dataframe_postprocessing
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - dataframe_forwarder_1
+  uuid: dataframe_postprocessing
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2025-09-17 08:20:26.389671+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: data_postprocessing_test
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags:
+- data_postprocessing
+type: python
+uuid: data_postprocessing_test
+variables_dir: /home/src/mage_data/default_repo
+widgets: []

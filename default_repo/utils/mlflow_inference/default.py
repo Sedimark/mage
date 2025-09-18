@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import numpy as np
 from typing import Dict, List, Tuple, Union, Any, Optional
+from default_repo.utils.crossformer_wrap.manipulation import initialize_manipulation, MageCrossFormer
 
 def load_and_predict(
     model_name: str, 
@@ -77,7 +78,8 @@ def load_and_predict(
         prepared_data = input_validation_result['prepared_data']
         print(input_validation_result["messages"])
         print(f"\nMaking predictions with data shape: {prepared_data.shape}")
-        predictions = model.predict(prepared_data)
+        manipulation = initialize_manipulation("mage_crossformer")
+        predictions = manipulation.predict(model, prepared_data)
         predictions_df = _convert_predictions_to_dataframe(
             predictions, 
             data, 

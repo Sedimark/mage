@@ -1,15 +1,11 @@
-import mlflow
 import pandas as pd
-import numpy as np
 import os
-import json
+import pickle
 import uuid
 from minio import Minio
 from io import BytesIO
-from default_repo.utils.crossformer_wrap.wrap import inference
-from sklearn.preprocessing import StandardScaler
-from datetime import datetime
 from default_repo.utils.mlflow_inference.default import load_and_predict
+from crossformer.utils.tools import Preprocessor
 
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
@@ -20,7 +16,7 @@ if 'test' not in globals():
 def send_result_to_minio(file_name: str, predictions: pd.DataFrame):
     try:
         minioClient = Minio(
-            os.getenv("MLFLOW_S3_ENDPOINT_URL").split("/")[-1],
+            os.getenv("MLFLOW_S3_ENDPOINT_URL", "").split("/")[-1],
             access_key=os.getenv("MINIO_ROOT_USER"),
             secret_key=os.getenv("MINIO_ROOT_PASSWORD"),
             secure=False)
@@ -55,6 +51,14 @@ def transform(data, *args, **kwargs):
     model_name, value_cols, in_len, data = data
     prediction_uuid = uuid.uuid4()
     prediction_name = f'{kwargs.get("prediction_name", "prediction")}_{prediction_uuid}.csv'
+    
+    preprocessor = Preprocessor(method="zscore",per_feature=True)
+    preprocessor.fit(data[value_cols].values)
+    data[value_cols] = preprocessor.transform(data[value_cols].values)
+    stats = preprocessor.export()
+
+    with open("default_repo/scaler_config.pkl", "wb") as f:
+        pickle.dump(stats, f)
 
     result = load_and_predict(
         model_name=model_name.split("/")[1],
@@ -84,15 +88,6 @@ def transform(data, *args, **kwargs):
     # data = pd.concat([data, predictions], ignore_index=True)
     data = predictions
     print(data.tail(20))
-    with open("default_repo/scaler_config.json", "r") as f:
-        cfg = json.load(f)
-
-    scaler = StandardScaler()
-    scaler.mean_ = np.array(cfg["mean_"])
-    scaler.scale_ = np.array(cfg["scale_"])
-    scaler.n_features_in_ = cfg["n_features_in_"]
-
-    data[value_cols] = scaler.inverse_transform(data[value_cols])
 
     return data.to_dict("records")
 
